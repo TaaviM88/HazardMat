@@ -11,13 +11,14 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     [Header("Parametres")]
     public float health = 100;
     public float IframeCooldown = 0.5f;
-
+    public bool canChangeAttackMode = true;
     private bool iframeTimerOn = false;
     bool isAlive = true;
     private float maxHealth;
+    Throw throwScript;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         #region Singelton check
         if (Instance != null)
@@ -30,18 +31,41 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         }
         #endregion
         DontDestroyOnLoad(gameObject);
-
+        throwScript = GetComponent<Throw>();
         maxHealth = health;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire3"))
         {
-            ToggleAttackMode();
+            if(canChangeAttackMode)
+            {
+                ToggleAttackMode();
+            }
         }
-        //Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
+        
+        switch(attackMode)
+        {
+            case AttackModeEnum.AttackMode.WeaponThrow:
+                if(!throwScript.enabled)
+                {
+                    throwScript.EnableScript();
+                    throwScript.enabled = true;
+                }
+                
+                break;
+            case AttackModeEnum.AttackMode.SummonFamiliar:
+                if(throwScript.enabled)
+                {
+                    throwScript.DisableScript();
+                    throwScript.enabled = false;
+                }
+                
+            break;
+        }
+        Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
     }
 
     public void ToggleAttackMode()

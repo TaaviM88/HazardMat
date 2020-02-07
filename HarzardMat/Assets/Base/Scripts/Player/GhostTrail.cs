@@ -5,6 +5,7 @@ public class GhostTrail : MonoBehaviour
     private PlayerMovement move;
     private SpriteRenderer sr;
     public Transform ghostsParent;
+    private PlayerAnimationScript anime;
     public Color trailColor;
     public Color fadeColor;
     public float ghostInterval;
@@ -24,8 +25,8 @@ public class GhostTrail : MonoBehaviour
         {
             Transform currentGhost = ghostsParent.GetChild(i);
             s.AppendCallback(() => currentGhost.position = move.transform.position);
-           // s.AppendCallback(() => currentGhost.GetComponent<SpriteRenderer>().flipX = anim.sr.flipX);
-           // s.AppendCallback(() => currentGhost.GetComponent<SpriteRenderer>().sprite = anim.sr.sprite);
+            s.AppendCallback(() => currentGhost.GetComponent<SpriteRenderer>().flipX = anime.sr.flipX);
+            s.AppendCallback(() => currentGhost.GetComponent<SpriteRenderer>().sprite = anime.sr.sprite);
             s.Append(currentGhost.GetComponent<SpriteRenderer>().material.DOColor(trailColor, 0));
             s.AppendCallback(() => FadeSprite(currentGhost));
             s.AppendInterval(ghostInterval);

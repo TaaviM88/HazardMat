@@ -8,9 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private Collision coll;
     private BetterJumping betterJumpScript;
+    private PlayerAnimationScript anime;
     Rigidbody2D _rb2D;
     public GameObject ghost;
-    //private GameObject cloneGhost;
+    private GhostTrail cloneGhost;
     [Header("Parametres")]
     public float speed = 7;
     public float jumpForce = 14;
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<Collision>();
         _rb2D = GetComponent<Rigidbody2D>();
         betterJumpScript = GetComponent<BetterJumping>();
+        anime = GetComponent<PlayerAnimationScript>();
         InstantiateGhost();
     }
 
@@ -45,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckGround();
+
+        float horizontalX = Input.GetAxis("Horizontal");
+        float VerticalY = Input.GetAxis("Vertical");
+        moveDir = new Vector2(horizontalX, VerticalY);
     }
 
     private void CheckGround()
@@ -120,13 +126,25 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float horizontalX = Input.GetAxis("Horizontal");
-        float VerticalY = Input.GetAxis("Vertical");
-        moveDir = new Vector2(horizontalX, VerticalY);
-        if(moveDir.x != 0)
+        
+        if(moveDir != Vector2.zero)
         {
             FindObjectOfType<GhostTrail>().ShowGhost();
+            //cloneGhost.ShowGhost();
         }
+
+        if(moveDir.x >0)
+        {
+            side = 1;
+            anime.Flip(side);
+        }
+
+        if(moveDir.x < 0)
+        {
+            side = -1;
+            anime.Flip(side);
+        }
+
         _rb2D.velocity = new Vector2(moveDir.x * speed, _rb2D.velocity.y);
     }
 
@@ -134,7 +152,33 @@ public class PlayerMovement : MonoBehaviour
     {
         if (FindObjectOfType<GhostTrail>() == null)
         {
-          Instantiate(ghost, new Vector2(-20, -20), Quaternion.identity).GetComponent<PlayerManager>();
+            GameObject clone = Instantiate(ghost, new Vector2(-20, -20), Quaternion.identity);
+            cloneGhost = clone.GetComponent<GhostTrail>();
         }
+    }
+
+    public int GetSide()
+    {
+        return side;
+    }
+
+    public Vector2 GetHorizontalInput()
+    {
+        return moveDir;
+    }
+
+    public Rigidbody2D GetRigidbody()
+    {
+        return _rb2D;
+    }
+
+    public void StopPlayerMovement()
+    {
+       _rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void StartPlayerMovement()
+    {
+        _rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
