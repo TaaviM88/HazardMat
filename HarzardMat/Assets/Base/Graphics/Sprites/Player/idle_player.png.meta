@@ -11,6 +11,24 @@ TextureImporter:
   - first:
       213: -217405026441441454
     second: idle_player_2
+  - first:
+      213: 1731826625948056992
+    second: idle_player_0
+  - first:
+      213: -8736355079854451529
+    second: idle_player_1
+  - first:
+      213: 179105889356535128
+    second: idle_player_2
+  - first:
+      213: -491635924158436073
+    second: idle_player_3
+  - first:
+      213: 6664765324762669748
+    second: idle_player_3
+  - first:
+      213: -1385927372011990428
+    second: idle_player_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -109,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a957b970f3a2ec180800000000000000
-      internalID: -9093284147415517798
+      spriteID: 0ad7234042fa80810800000000000000
+      internalID: 1731826625948056992
       vertices: []
       indices: 
       edges: []
@@ -130,8 +148,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00b751846cbf1d4c0800000000000000
-      internalID: -4264350543111685376
+      spriteID: 7b49891975b32c680800000000000000
+      internalID: -8736355079854451529
       vertices: []
       indices: 
       edges: []
@@ -151,8 +169,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25fc292c74f9bfcf0800000000000000
-      internalID: -217405026441441454
+      spriteID: 855d6408bdf4c7200800000000000000
+      internalID: 179105889356535128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_player_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2e1dd50c00e7c50800000000000000
+      internalID: 6664765324762669748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_player_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4621cbae56234cce0800000000000000
+      internalID: -1385927372011990428
       vertices: []
       indices: 
       edges: []
