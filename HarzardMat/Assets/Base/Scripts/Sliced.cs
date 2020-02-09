@@ -8,7 +8,7 @@ public class Sliced : MonoBehaviour
     public WhichPart whichpart;
     SpriteRenderer spriteRenderer;
     public float leftBorder = 0, bottomBorder = 0, rightBorder = 0, topBorder = 0;
-
+    public float force = 4;
     Rigidbody2D _rb2D;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class Sliced : MonoBehaviour
                 var rect = new Rect(0, spriteRenderer.sprite.rect.height / 2, spriteRenderer.sprite.rect.width, spriteRenderer.sprite.rect.height / 2);
 
                 spriteRenderer.sprite = Sprite.Create(spriteRenderer.sprite.texture, rect, Vector2.zero, 32, 32, SpriteMeshType.Tight, border, true);
-                _rb2D.AddForce(Vector2.right * 2, ForceMode2D.Impulse);
+                _rb2D.AddForce(Vector2.right * force, ForceMode2D.Impulse);
 
                 break;
 
@@ -38,7 +38,7 @@ public class Sliced : MonoBehaviour
                 rect = new Rect(0, 0, spriteRenderer.sprite.rect.width, spriteRenderer.sprite.rect.height / 2);
 
                 spriteRenderer.sprite = Sprite.Create(spriteRenderer.sprite.texture, rect, Vector2.one * 0.5f, 32, 32, SpriteMeshType.Tight, border, true);
-                _rb2D.AddForce(-Vector2.right * 2, ForceMode2D.Impulse);
+                _rb2D.AddForce(-Vector2.right * force, ForceMode2D.Impulse);
                 break;
             case WhichPart.Right:
 
@@ -47,9 +47,9 @@ public class Sliced : MonoBehaviour
                 rect = new Rect(spriteRenderer.sprite.rect.width / 2, 0, spriteRenderer.sprite.rect.width / 2, spriteRenderer.sprite.rect.height);
 
                 spriteRenderer.sprite = Sprite.Create(spriteRenderer.sprite.texture, rect, Vector2.one * 0.5f, 32, 32, SpriteMeshType.Tight, border, true);
-                _rb2D.AddForce(-Vector2.right * 2, ForceMode2D.Impulse);
+                _rb2D.AddForce(-Vector2.right * force, ForceMode2D.Impulse);
                 spriteRenderer.sprite = Sprite.Create(spriteRenderer.sprite.texture, rect, Vector2.one * 0.5f, 32, 32, SpriteMeshType.Tight, border, true);
-                _rb2D.AddForce(Vector2.right * 2, ForceMode2D.Impulse);
+                _rb2D.AddForce(Vector2.right * force, ForceMode2D.Impulse);
                 break;
             case WhichPart.Left:
                 spriteRenderer = GetComponent<SpriteRenderer>();
@@ -57,7 +57,7 @@ public class Sliced : MonoBehaviour
                 rect = new Rect(0, 0, spriteRenderer.sprite.rect.width / 2, spriteRenderer.sprite.rect.height);
 
                 spriteRenderer.sprite = Sprite.Create(spriteRenderer.sprite.texture, rect, Vector2.one * 0.5f, 32, 32, SpriteMeshType.Tight, border, true);
-                _rb2D.AddForce(-Vector2.right * 2, ForceMode2D.Impulse);
+                _rb2D.AddForce(-Vector2.right * force, ForceMode2D.Impulse);
                 break;
         }
     }

@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 {
     public static PlayerManager Instance;
     //private enum AttackMode {WeaponThrow,SummonFamiliar};
     //private AttackMode attackMode = AttackMode.WeaponThrow;
     AttackModeEnum.AttackMode attackMode;
+    [Header("References")]
+    public GameObject seal;
+
+    [Space]
     [Header("Parametres")]
     public float health = 100;
     public float IframeCooldown = 0.5f;
     public bool canChangeAttackMode = true;
-    private bool iframeTimerOn = false;
+    
+    bool iframeTimerOn = false;
     bool isAlive = true;
-    private float maxHealth;
+    float maxHealth;
     Throw throwScript;
 
     // Start is called before the first frame update
@@ -98,4 +103,14 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         throw new System.NotImplementedException();
     }
 
+
+    public void DissolveSeal(float duration)
+    {
+        seal.GetComponent<Renderer>().material.DOFloat(1, "_DissolveAmount", duration);
+    }
+
+    public void DissolveSealBack(float duration)
+    {
+        seal.GetComponent<Renderer>().material.DOFloat(0, "_DissolveAmount", duration);
+    }
 }

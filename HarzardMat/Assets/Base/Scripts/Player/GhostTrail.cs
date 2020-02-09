@@ -38,4 +38,20 @@ public class GhostTrail : MonoBehaviour
         current.GetComponent<SpriteRenderer>().material.DOColor(fadeColor, fadeTime);
     }
 
+    private void OnEnable()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
+
 }

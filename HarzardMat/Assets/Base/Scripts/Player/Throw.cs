@@ -5,10 +5,12 @@ using UnityEngine;
 using DG.Tweening;
 public class Throw : MonoBehaviour
 {
-    private Rigidbody2D weaponRb2D;
+    Rigidbody2D weaponRb2D;
     ThrowWeapon throwWeaponScript;
     PlayerMovement move;
-    private float returnTime;
+    Material material;
+    float returnTime;
+    
     private Vector3 origLockPos;
     private Vector3 origLockRot;
     private Vector3 pullPosition;
@@ -35,8 +37,11 @@ public class Throw : MonoBehaviour
     void Start()
     {
         move = GetComponent<PlayerMovement>();
+        material = GetComponent<Renderer>().material;
+
         weaponRb2D = weapon.GetComponent<Rigidbody2D>();
         throwWeaponScript = weapon.GetComponent<ThrowWeapon>();
+
         throwWeaponScript.AddThrowWeaponScript(this);
         origLockPos = weapon.localPosition;
         origLockRot = weapon.localEulerAngles;
@@ -109,7 +114,10 @@ public class Throw : MonoBehaviour
     private void WarpToWeapon()
     {
         move.canMove = false;
-        //material.DOFloat(1, "_DissolveAmount", warpDuration);
+        move.ShowGhost();
+        //move.DisableGhost();
+        material.DOFloat(1, "_DissolveAmount", warpDuration);
+        PlayerManager.Instance.DissolveSeal(warpDuration);
         transform.DOMove(weapon.position, warpDuration).SetEase(Ease.InExpo).OnComplete(() => FinishWarp());
         Rigidbody2D rb = move.GetRigidbody();
         rb.isKinematic= true;
@@ -117,8 +125,10 @@ public class Throw : MonoBehaviour
 
     private void FinishWarp()
     {
-        //material.DOFloat(0, "_DissolveAmount", 0.2f);
+        material.DOFloat(0, "_DissolveAmount", warpDuration);
+        PlayerManager.Instance.DissolveSealBack(warpDuration);
         move.canMove = true;
+        //move.EnableGhost();
         isWarping = false;
         Rigidbody2D rb = move.GetRigidbody();
         rb.isKinematic = false;

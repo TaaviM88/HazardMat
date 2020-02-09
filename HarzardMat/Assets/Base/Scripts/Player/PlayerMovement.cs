@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(moveDir != Vector2.zero)
         {
-            FindObjectOfType<GhostTrail>().ShowGhost();
+            //FindObjectOfType<GhostTrail>().ShowGhost();
             //cloneGhost.ShowGhost();
         }
 
@@ -180,5 +180,20 @@ public class PlayerMovement : MonoBehaviour
     public void StartPlayerMovement()
     {
         _rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    public void ShowGhost()
+    {
+        cloneGhost.ShowGhost();
+    }
+
+    public void EnableGhost()
+    {
+        cloneGhost.enabled = true;
+    }
+
+    public void  DisableGhost()
+    {
+        cloneGhost.enabled = false;
     }
 }
