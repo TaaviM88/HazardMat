@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using DG.Tweening;
 public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 {
@@ -8,6 +9,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     //private enum AttackMode {WeaponThrow,SummonFamiliar};
     //private AttackMode attackMode = AttackMode.WeaponThrow;
     AttackModeEnum.AttackMode attackMode;
+    PlayerMovement move;
     [Header("References")]
     public GameObject seal;
 
@@ -16,7 +18,8 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     public float health = 100;
     public float IframeCooldown = 0.5f;
     public bool canChangeAttackMode = true;
-    
+    public int side = 1;
+
     bool iframeTimerOn = false;
     bool isAlive = true;
     float maxHealth;
@@ -37,6 +40,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         #endregion
         DontDestroyOnLoad(gameObject);
         throwScript = GetComponent<Throw>();
+        move = GetComponent<PlayerMovement>();
         maxHealth = health;
     }
 
@@ -53,6 +57,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         
         switch(attackMode)
         {
+
             case AttackModeEnum.AttackMode.WeaponThrow:
                 if(!throwScript.enabled)
                 {
@@ -69,8 +74,18 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
                 }
                 
             break;
+
+            case AttackModeEnum.AttackMode.None:
+                if (throwScript.enabled)
+                {
+                    throwScript.DisableScript();
+                    throwScript.enabled = false;
+                }
+                
+            break;
         }
-        Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
+        side = move.side;
+        //Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
     }
 
     public void ToggleAttackMode()
@@ -84,7 +99,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         }
         else
         {
-            attackMode = AttackModeEnum.AttackMode.WeaponThrow;
+            attackMode = 0;
         }
     }
 
@@ -103,6 +118,11 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         throw new System.NotImplementedException();
     }
 
+    public void SetCameraToFollowPlayer()
+    {
+        var vcam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+        vcam.Follow = this.gameObject.transform;
+    }
 
     public void DissolveSeal(float duration)
     {

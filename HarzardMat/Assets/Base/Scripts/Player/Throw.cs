@@ -109,6 +109,7 @@ public class Throw : MonoBehaviour
         move.canMove = true;
         move.StartPlayerMovement();
         PlayerManager.Instance.canChangeAttackMode = true;
+        PlayerManager.Instance.SetCameraToFollowPlayer();   
     }
 
     private void WarpToWeapon()
@@ -158,6 +159,7 @@ public class Throw : MonoBehaviour
         weapon.parent = null;
         weapon.eulerAngles = Vector3.zero;
         throwWeaponScript.ToggleColliderTrigger(false);
+        throwWeaponScript.SetCameraToFollowWeapon();
         throwWeaponScript.ThrowTheWeapon(move.GetHorizontalInput(), throwPower,move.side);
         throwWeaponScript.ResetRangeTimer();
     }

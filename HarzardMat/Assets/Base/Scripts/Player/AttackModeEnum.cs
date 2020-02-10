@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class AttackModeEnum : MonoBehaviour
 {
-    public enum AttackMode { WeaponThrow, SummonFamiliar,};
+    public enum AttackMode {None, WeaponThrow, SummonFamiliar,};
     public static AttackMode attackModes;
 }

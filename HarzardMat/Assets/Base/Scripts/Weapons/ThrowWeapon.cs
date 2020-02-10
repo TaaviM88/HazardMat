@@ -71,7 +71,7 @@ public class ThrowWeapon : MonoBehaviour
     public void ThrowTheWeapon(Vector2 direction, float power, int looking)
     {
         throwDirection = direction;
-        if(direction !=Vector2.zero)
+        if(direction != Vector2.zero)
         {
             _rb2d.AddForce(new Vector2(direction.x, direction.y) * power, ForceMode2D.Impulse);
         }

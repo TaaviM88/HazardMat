@@ -24,6 +24,7 @@ public class GhostTrail : MonoBehaviour
         for (int i = 0; i < ghostsParent.childCount; i++)
         {
             Transform currentGhost = ghostsParent.GetChild(i);
+            currentGhost.localScale = new Vector3(PlayerManager.Instance.side, transform.localScale.y, transform.localScale.z); 
             s.AppendCallback(() => currentGhost.position = move.transform.position);
             s.AppendCallback(() => currentGhost.GetComponent<SpriteRenderer>().flipX = anime.sr.flipX);
             s.AppendCallback(() => currentGhost.GetComponent<SpriteRenderer>().sprite = anime.sr.sprite);
