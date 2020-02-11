@@ -56,7 +56,8 @@ public class Throw : MonoBehaviour
             {
                 throwWeaponScript.activated = true;
                 move.canMove = false;
-                move.StopPlayerMovement();
+                //move.StopPlayerMovement();
+                move.FreezePlayerXMovement();
                 PlayerManager.Instance.canChangeAttackMode = false;
             }
 
@@ -115,6 +116,7 @@ public class Throw : MonoBehaviour
     private void WarpToWeapon()
     {
         move.canMove = false;
+        
         move.ShowGhost();
         //move.DisableGhost();
         material.DOFloat(1, "_DissolveAmount", warpDuration);
@@ -122,6 +124,7 @@ public class Throw : MonoBehaviour
         transform.DOMove(weapon.position, warpDuration).SetEase(Ease.InExpo).OnComplete(() => FinishWarp());
         Rigidbody2D rb = move.GetRigidbody();
         rb.isKinematic= true;
+        move.ReleaseWallGrab();
     }
 
     private void FinishWarp()
@@ -133,7 +136,12 @@ public class Throw : MonoBehaviour
         isWarping = false;
         Rigidbody2D rb = move.GetRigidbody();
         rb.isKinematic = false;
+        move.WallGrab();
+        //Remove if  you don't want to reset your Y velocity after warp
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+       
         WeaponStartPull();
+
     }
 
     public void WeaponStartPull()
@@ -162,6 +170,7 @@ public class Throw : MonoBehaviour
         throwWeaponScript.SetCameraToFollowWeapon();
         throwWeaponScript.ThrowTheWeapon(move.GetHorizontalInput(), throwPower,move.side);
         throwWeaponScript.ResetRangeTimer();
+        
     }
 
     public Vector3 GetQuadraticCurvePoint(float t, Vector2 p0, Vector2 p1, Vector2 p2)

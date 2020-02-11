@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private bool groundTouch;
     private bool hasDashed;
     private bool jumping = false;
-
+    private float orginalGravityScale;
     private Vector2 moveDir;
     public int side = 1;
 
@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
         betterJumpScript = GetComponent<BetterJumping>();
         anime = GetComponent<PlayerAnimationScript>();
+
+        orginalGravityScale = _rb2D.gravityScale;
         InstantiateGhost();
     }
 
@@ -51,6 +53,43 @@ public class PlayerMovement : MonoBehaviour
         float horizontalX = Input.GetAxis("Horizontal");
         float VerticalY = Input.GetAxis("Vertical");
         moveDir = new Vector2(horizontalX, VerticalY);
+
+        Debug.Log(coll.onWall + "Kosketan seinää");
+
+    }
+
+    public void ReleaseWallGrab()
+    {
+        if(wallGrab)
+        {
+            if (_rb2D.gravityScale != orginalGravityScale)
+            {
+                _rb2D.gravityScale = orginalGravityScale;
+            }
+            //StartPlayerMovement();
+            
+            wallGrab = false;
+            
+            Debug.Log("Wallgrab" + wallGrab);
+        }
+      
+    }
+
+    public void WallGrab()
+    {
+        if (coll.onWall)
+        {
+            if (side != coll.wallSide)
+            {
+                anime.Flip(side * -1);
+            }
+            wallGrab = true;
+            _rb2D.gravityScale = 0;
+            //_rb2D.constraints = RigidbodyConstraints2D.FreezePositionY;
+            //betterJumpScript.enabled = false;
+        }
+       
+        Debug.Log("Wallgrab" + wallGrab);
     }
 
     private void CheckGround()
@@ -84,12 +123,15 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+      
         if(Input.GetButtonDown("Jump"))
         {
             Jump(false);
+            ReleaseWallGrab();
         }
         
     }
+
 
     private void Jump(bool attackJump)
     {
@@ -116,17 +158,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if(!canMove)
+        if (wallGrab)
         {
             return;
         }
 
-        if(wallGrab)
+        if (!canMove)
         {
+            _rb2D.velocity = new Vector2(0, _rb2D.velocity.y);
             return;
         }
 
-        
         if(moveDir != Vector2.zero)
         {
             //FindObjectOfType<GhostTrail>().ShowGhost();
@@ -177,8 +219,16 @@ public class PlayerMovement : MonoBehaviour
        _rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
+    public void FreezePlayerXMovement()
+    {
+        _rb2D.constraints = RigidbodyConstraints2D.FreezePositionX;
+        _rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
     public void StartPlayerMovement()
     {
+        _rb2D.constraints = RigidbodyConstraints2D.None;
+        transform.localEulerAngles = new Vector3(0,0,0);
         _rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 

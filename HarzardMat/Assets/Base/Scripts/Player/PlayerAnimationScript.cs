@@ -22,13 +22,13 @@ public class PlayerAnimationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("OnGround", coll.onGround);
+        /*anim.SetBool("OnGround", coll.onGround);
         anim.SetBool("OnWall", coll.onWall);
         anim.SetBool("onRightWall", coll.onRightWall);
         anim.SetBool("wallGrab", move.wallGrab);
         //anim.SetBool("wallSlide", move.wallSlide);
         anim.SetBool("canMove", move.canMove);
-        anim.SetBool("isDashing", move.isDashing);
+        anim.SetBool("isDashing", move.isDashing);*/
     }
 
     public void SetHorizontalMovement(float x, float y, float yVel, float attackB)

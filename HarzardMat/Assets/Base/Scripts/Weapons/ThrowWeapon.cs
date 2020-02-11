@@ -99,7 +99,7 @@ public class ThrowWeapon : MonoBehaviour
         //ei ole enemylayer
         if(collision.gameObject.layer != 11)
         {
-            print(collision.gameObject.name);
+            //print(collision.gameObject.name);
             _rb2d.Sleep();
             _rb2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             _rb2d.isKinematic = true;
