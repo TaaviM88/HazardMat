@@ -10,9 +10,10 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     //private AttackMode attackMode = AttackMode.WeaponThrow;
     AttackModeEnum.AttackMode attackMode;
     PlayerMovement move;
+    PlayerAnimationScript animeScript;
     [Header("References")]
     public GameObject seal;
-
+    public GameObject sealBagPosition;
     [Space]
     [Header("Parametres")]
     public float health = 100;
@@ -41,6 +42,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         DontDestroyOnLoad(gameObject);
         throwScript = GetComponent<Throw>();
         move = GetComponent<PlayerMovement>();
+        animeScript = GetComponent<PlayerAnimationScript>();
         maxHealth = health;
     }
 
@@ -85,6 +87,8 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
             break;
         }
         side = move.side;
+
+        sealBagPosition.transform.localScale = new Vector3(side, sealBagPosition.transform.localScale.y, sealBagPosition.transform.localScale.z);
         //Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
     }
 

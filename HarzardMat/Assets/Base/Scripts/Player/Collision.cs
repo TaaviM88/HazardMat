@@ -7,25 +7,21 @@ public class Collision : MonoBehaviour
     [Header("Layers")]
     public LayerMask groundLayer;
     [Space]
-    public bool onGround, onWall, onRightWall, onLeftWall;
+    public bool onGround, onWall, onRightWall, onLeftWall, onCeiling;
     public int wallSide;
 
     [Space]
     [Header("Collision")]
     public float collisionRadius = 0.23f;
-    public Vector2 collisionSize;
-    public Vector2 bottomOffset, rightOffset, leftOffset;
+
+    public Vector2 bottomOffset,ceilingOffset, rightOffset, leftOffset;
     private Color debugCollisionColor = Color.red;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+        onCeiling = Physics2D.OverlapCircle((Vector2)transform.position + ceilingOffset, collisionRadius, groundLayer);
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer) ||
         Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 
@@ -37,12 +33,11 @@ public class Collision : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        var positions = new Vector2[] { bottomOffset, rightOffset, leftOffset };
+        var positions = new Vector2[] { bottomOffset, ceilingOffset, rightOffset, leftOffset };
         Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + ceilingOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
-        //Gizmos.DrawWireCube((Vector2)transform.position + rightOffset, collisionSize);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
-        //Gizmos.DrawWireCube((Vector2)transform.position + leftOffset, collisionSize);
 
     }
 }

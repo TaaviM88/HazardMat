@@ -54,7 +54,11 @@ public class PlayerMovement : MonoBehaviour
         float VerticalY = Input.GetAxis("Vertical");
         moveDir = new Vector2(horizontalX, VerticalY);
 
-        Debug.Log(coll.onWall + "Kosketan seinää");
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump(false);
+            ReleaseWallGrab();
+        }
 
     }
 
@@ -66,35 +70,32 @@ public class PlayerMovement : MonoBehaviour
             {
                 _rb2D.gravityScale = orginalGravityScale;
             }
-            //StartPlayerMovement();
+            StartPlayerMovement();
             
             wallGrab = false;
-            
-            Debug.Log("Wallgrab" + wallGrab);
         }
       
     }
-
-    public void WallGrab()
+    public bool WallGrab()
     {
-        if (coll.onWall)
+        if (coll.onWall && !coll.onGround && !coll.onCeiling)
         {
             if (side != coll.wallSide)
             {
                 anime.Flip(side * -1);
             }
             wallGrab = true;
-            _rb2D.gravityScale = 0;
-            //_rb2D.constraints = RigidbodyConstraints2D.FreezePositionY;
+            //_rb2D.gravityScale = 0;
+            _rb2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             //betterJumpScript.enabled = false;
+            return true;
         }
-       
-        Debug.Log("Wallgrab" + wallGrab);
+        else
+            return false;
     }
 
     private void CheckGround()
     {
-
         if (coll.onGround && !groundTouch)
         {
             GroundTouch();
@@ -123,19 +124,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-      
-        if(Input.GetButtonDown("Jump"))
-        {
-            Jump(false);
-            ReleaseWallGrab();
-        }
-        
     }
 
 
     private void Jump(bool attackJump)
     {
-        if (!coll.onGround)
+        if (!coll.onGround || !canMove)
         {
             //Jump(Vector2.up, false, false);
             jumping = false;
@@ -143,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _rb2D.velocity = new Vector2(_rb2D.velocity.x, 0);
+            //_rb2D.velocity = new Vector2(_rb2D.velocity.x, 0);
             if(attackJump)
             {
                 //do jump attack stuff here
@@ -221,8 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FreezePlayerXMovement()
     {
-        _rb2D.constraints = RigidbodyConstraints2D.FreezePositionX;
-        _rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rb2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void StartPlayerMovement()

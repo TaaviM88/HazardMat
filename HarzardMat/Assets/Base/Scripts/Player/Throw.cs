@@ -32,7 +32,9 @@ public class Throw : MonoBehaviour
     public bool hasWeapon = true;
     public bool pulling = false;
 
+    private bool wait = false;
     private bool isWarping = false;
+    private bool isAiming = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,15 +60,15 @@ public class Throw : MonoBehaviour
                 move.canMove = false;
                 //move.StopPlayerMovement();
                 move.FreezePlayerXMovement();
+                isAiming = true;
                 PlayerManager.Instance.canChangeAttackMode = false;
             }
 
             if(Input.GetButtonUp("Fire1"))
             {
                 WeaponThrow();
-            }
-
-            
+                isAiming = false;
+            } 
         }
         else
         {
@@ -87,11 +89,32 @@ public class Throw : MonoBehaviour
             if(returnTime <1)
             {
                 weapon.position = GetQuadraticCurvePoint(returnTime, pullPosition, curvePoint.position, weaponSlot.position);
-                returnTime += Time.deltaTime * 1.5f;    
+                returnTime += Time.deltaTime * 1.5f;
+                move.canMove = false;
             }
             else
             {
                 WeaponCatch();
+            }
+        }
+
+       /* if(isWarping)
+        {
+            move.WallGrab();
+        }*/
+
+        if(isAiming)
+        {
+            if(move.canMove)
+            {
+                move.canMove = false;
+            }
+        }
+        if(wait)
+        {
+            if(!move.WallGrab())
+            {
+                move.WallGrab();
             }
         }
     }
@@ -136,14 +159,20 @@ public class Throw : MonoBehaviour
         isWarping = false;
         Rigidbody2D rb = move.GetRigidbody();
         rb.isKinematic = false;
-        move.WallGrab();
+        
         //Remove if  you don't want to reset your Y velocity after warp
         rb.velocity = new Vector2(rb.velocity.x, 0);
-       
+        StartCoroutine(TryToWallGrab());
         WeaponStartPull();
 
     }
 
+    IEnumerator TryToWallGrab()
+    {
+        wait = true;
+        yield return new WaitForSeconds(.25f);
+        wait = false;
+    }
     public void WeaponStartPull()
     {
         pullPosition = weapon.position;
@@ -190,4 +219,6 @@ public class Throw : MonoBehaviour
     {
         weapon.gameObject.SetActive(true);
     }
+
+    
 }

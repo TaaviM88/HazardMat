@@ -54,7 +54,8 @@ public class PlayerAnimationScript : MonoBehaviour
             }
         }
         bool state = (side == 1) ? false : true;
-        transform.localScale = new Vector3 (side, transform.localScale.y, transform.localScale.z);
-        //sr.flipX = state;
+
+        //transform.localScale = new Vector3 (side, transform.localScale.y, transform.localScale.z);
+        sr.flipX = state;
     }
 }
