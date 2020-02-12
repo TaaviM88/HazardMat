@@ -40,4 +40,16 @@ public class Collision : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
 
     }
+
+    public bool IsEverythingColliding()
+    {
+        if(onGround && onRightWall && onLeftWall && onCeiling)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

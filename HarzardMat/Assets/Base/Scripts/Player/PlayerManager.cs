@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     [Header("References")]
     public GameObject seal;
     public GameObject sealBagPosition;
+    public GameObject spawnPoint;
     [Space]
     [Header("Parametres")]
     public float health = 100;
@@ -23,8 +24,11 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
     bool iframeTimerOn = false;
     bool isAlive = true;
+    bool summoning = false;
+    bool summoned = false;
     float maxHealth;
     Throw throwScript;
+    Summon summon;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,13 +47,19 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         throwScript = GetComponent<Throw>();
         move = GetComponent<PlayerMovement>();
         animeScript = GetComponent<PlayerAnimationScript>();
+        summon = GetComponent<Summon>();
         maxHealth = health;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire3"))
+        if (summoned)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Fire3"))
         {
             if(canChangeAttackMode)
             {
@@ -66,13 +76,23 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
                     throwScript.EnableScript();
                     throwScript.enabled = true;
                 }
-                
+                if(summon.enabled)
+                {
+                    summon.enabled = false;
+                }
+
                 break;
+
             case AttackModeEnum.AttackMode.SummonFamiliar:
                 if(throwScript.enabled)
                 {
                     throwScript.DisableScript();
                     throwScript.enabled = false;
+                    if(!summon.enabled)
+                    {
+                        summon.enabled = true;
+                    }
+                    
                 }
                 
             break;
@@ -83,8 +103,13 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
                     throwScript.DisableScript();
                     throwScript.enabled = false;
                 }
-                
-            break;
+
+                if (summon.enabled)
+                {
+                    summon.enabled = false;
+                }
+
+                break;
         }
         side = move.side;
 
@@ -105,6 +130,33 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         {
             attackMode = 0;
         }
+    }
+
+    public void Summoning()
+    {
+        SetSummoning(true);
+        //move.enabled = false;
+        FreezePlayerMovement();
+        throwScript.enabled = false;
+        summon.enabled = false;
+        summoned = true;
+        sealBagPosition.gameObject.SetActive(false);
+    }
+
+    public void EndSummon()
+    {
+        SetSummoning(false);
+        move.enabled = true;
+        summon.enabled = true;
+        summoned = false;
+        SetCameraToFollowPlayer();
+        sealBagPosition.gameObject.SetActive(true);
+        StartPlayerMovement();
+    }
+
+    public void SetSummoning(bool newbool)
+    {
+        summoning = newbool;
     }
 
     public void GoToPosition(Vector2 pos)
@@ -136,5 +188,17 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     public void DissolveSealBack(float duration)
     {
         seal.GetComponent<Renderer>().material.DOFloat(0, "_DissolveAmount", duration);
+    }
+
+    public void FreezePlayerMovement()
+    {
+        move.canMove = false;
+        move.FreezePlayerXMovement();
+    }
+
+    public void StartPlayerMovement()
+    {
+        move.StartPlayerMovement();
+        move.canMove = true;
     }
 }
