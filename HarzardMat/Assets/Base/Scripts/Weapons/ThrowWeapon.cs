@@ -73,7 +73,7 @@ public class ThrowWeapon : MonoBehaviour
         throwDirection = direction;
         if(direction != Vector2.zero)
         {
-            _rb2d.AddForce(new Vector2(direction.x, direction.y) * power, ForceMode2D.Impulse);
+            _rb2d.AddForce(new Vector2(direction.x, direction.y).normalized * power, ForceMode2D.Impulse);
         }
         else
         {

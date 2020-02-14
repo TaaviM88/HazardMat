@@ -14,12 +14,12 @@ public class Throw : MonoBehaviour
     private Vector3 origLockPos;
     private Vector3 origLockRot;
     private Vector3 pullPosition;
-
+    private Vector3 arrowOrigPosition;
     [Header("Public References")]
     public Transform weapon;
     public Transform weaponSlot;
     public Transform curvePoint;
-
+    public Transform arrow;
     [Space]
     [Header("Parameteres")]
     public float throwPower = 30;
@@ -47,6 +47,13 @@ public class Throw : MonoBehaviour
         throwWeaponScript.AddThrowWeaponScript(this);
         origLockPos = weapon.localPosition;
         origLockRot = weapon.localEulerAngles;
+
+         arrowOrigPosition = arrow.localPosition;
+
+        if(arrow.gameObject.activeInHierarchy)
+        {
+            arrow.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -109,7 +116,55 @@ public class Throw : MonoBehaviour
             {
                 move.canMove = false;
             }
+            if (!arrow.gameObject.activeInHierarchy)
+            {
+                arrow.gameObject.SetActive(true);
+            }
+
+            if(arrow.localPosition != arrowOrigPosition)
+            {
+                arrow.localPosition = arrowOrigPosition;
+            }
+
+            if(move.side !=1)
+            {
+                arrow.GetComponent<Rigidbody2D>().rotation = 180;
+            }
+            else
+            {
+                arrow.GetComponent<Rigidbody2D>().rotation = 0;
+            }
+
+            if (move.GetHorizontalInput().y >= 0)
+            {
+                float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
+                Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+
+                if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero && !move.wallGrab)
+                {
+                    arrow.GetComponent<Rigidbody2D>().rotation = 180;
+                }
+                else
+                {
+                    arrow.GetComponent<Rigidbody2D>().rotation = angle;
+                }
+               
+            }
+            else
+            {
+                float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
+                Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+                arrow.GetComponent<Rigidbody2D>().rotation = -angle;
+            }
         }
+        else
+        {
+            if (arrow.gameObject.activeInHierarchy)
+            {
+                arrow.gameObject.SetActive(false);
+            }
+        }
+
         if(wait)
         {
             if(!move.WallGrab())

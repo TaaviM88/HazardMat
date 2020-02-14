@@ -42,20 +42,25 @@ public class PlayerAnimationScript : MonoBehaviour
 
     public void Flip(int side)
     {
+        Debug.Log("Flipataan hahmoa");
         if (move.wallGrab)
         {
             if (side == -1 && sr.flipX)
             {
+
+                Debug.Log("perutaan flippaus");
                 return;
+
             }
             if (side == 1 && !sr.flipX)
             {
+
+                Debug.Log("perutaan flippaus");
                 return;
             }
         }
         bool state = (side == 1) ? false : true;
 
-        //transform.localScale = new Vector3 (side, transform.localScale.y, transform.localScale.z);
         sr.flipX = state;
     }
 }

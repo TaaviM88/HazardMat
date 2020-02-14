@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityScaleNumber = 3;
     public float knockbackForceX = 15f;
     public float knockbackForceY = 5f;
+    public float wallJumpLerp = 10;
     [Space]
     [Header("Booleans")]
     public bool canMove = true, wallGrab, isDashing;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private bool groundTouch;
     private bool hasDashed;
     private bool jumping = false;
+    private bool wallJumping = false;
     private float orginalGravityScale;
     private Vector2 moveDir;
     public int side = 1;
@@ -73,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
             StartPlayerMovement();
             
             wallGrab = false;
+
+            WallJump();
         }
       
     }
@@ -83,10 +87,12 @@ public class PlayerMovement : MonoBehaviour
             if (side != coll.wallSide)
             {
                 anime.Flip(side * -1);
+                side *= -1;
             }
             wallGrab = true;
             //_rb2D.gravityScale = 0;
             _rb2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            wallJumping = false;
             //betterJumpScript.enabled = false;
             return true;
         }
@@ -94,12 +100,31 @@ public class PlayerMovement : MonoBehaviour
             return false;
     }
 
+    private void WallJump()
+    {
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+        {
+            side *= -1;
+            anime.Flip(side);
+            side *= -1;
+        }
+
+        Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
+
+        _rb2D.velocity = new Vector2(_rb2D.velocity.x, 0);
+        Vector2 dir = Vector2.up / 1.2f + wallDir / 1.2f;
+        _rb2D.velocity += dir * jumpForce;
+        wallJumping = true;
+    }
+
+
     private void CheckGround()
     {
         if (coll.onGround && !groundTouch)
         {
             GroundTouch();
             groundTouch = true;
+            wallJumping = false;
         }
 
         if (!coll.onGround && groundTouch)
@@ -181,7 +206,15 @@ public class PlayerMovement : MonoBehaviour
             anime.Flip(side);
         }
 
-        _rb2D.velocity = new Vector2(moveDir.x * speed, _rb2D.velocity.y);
+        if(wallJumping)
+        {
+            _rb2D.velocity = Vector2.Lerp(_rb2D.velocity, (new Vector2(moveDir.x * speed/2, _rb2D.velocity.y)), wallJumpLerp * Time.deltaTime);
+        }
+        else
+        {
+            _rb2D.velocity = new Vector2(moveDir.x * speed, _rb2D.velocity.y);
+        }
+    
     }
 
     private void InstantiateGhost()
