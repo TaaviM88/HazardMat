@@ -31,7 +31,7 @@ public class PlayerAnimationScript : MonoBehaviour
         anim.SetBool("isDashing", move.isDashing);*/
     }
 
-    public void SetHorizontalMovement(float x, float y, float yVel, float attackB)
+    public void SetHorizontalMovement(float x, float y, float yVel)
     {
         anim.SetFloat("HorizontalAxis", x);
         anim.SetFloat("VerticalAxis", y);

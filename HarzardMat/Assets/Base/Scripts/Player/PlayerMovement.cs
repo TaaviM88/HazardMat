@@ -213,6 +213,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             _rb2D.velocity = new Vector2(moveDir.x * speed, _rb2D.velocity.y);
+            anime.SetHorizontalMovement(moveDir.x, moveDir.y, _rb2D.velocity.y);
         }
     
     }

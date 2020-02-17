@@ -112,50 +112,7 @@ public class Throw : MonoBehaviour
 
         if(isAiming)
         {
-            if(move.canMove)
-            {
-                move.canMove = false;
-            }
-            if (!arrow.gameObject.activeInHierarchy)
-            {
-                arrow.gameObject.SetActive(true);
-            }
-
-            if(arrow.localPosition != arrowOrigPosition)
-            {
-                arrow.localPosition = arrowOrigPosition;
-            }
-
-            if(move.side !=1)
-            {
-                arrow.GetComponent<Rigidbody2D>().rotation = 180;
-            }
-            else
-            {
-                arrow.GetComponent<Rigidbody2D>().rotation = 0;
-            }
-
-            if (move.GetHorizontalInput().y >= 0)
-            {
-                float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
-                Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
-
-                if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero && !move.wallGrab)
-                {
-                    arrow.GetComponent<Rigidbody2D>().rotation = 180;
-                }
-                else
-                {
-                    arrow.GetComponent<Rigidbody2D>().rotation = angle;
-                }
-               
-            }
-            else
-            {
-                float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
-                Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
-                arrow.GetComponent<Rigidbody2D>().rotation = -angle;
-            }
+            AimArrow();
         }
         else
         {
@@ -171,6 +128,56 @@ public class Throw : MonoBehaviour
             {
                 move.WallGrab();
             }
+        }
+    }
+
+    private void AimArrow()
+    {
+        if (move.canMove)
+        {
+            move.canMove = false;
+        }
+
+        if (!arrow.gameObject.activeInHierarchy)
+        {
+            arrow.gameObject.SetActive(true);
+        }
+
+        if (arrow.localPosition != arrowOrigPosition)
+        {
+            arrow.localPosition = arrowOrigPosition;
+        }
+
+        if (move.side != 1)
+        {
+            arrow.GetComponent<Rigidbody2D>().rotation = 180;
+        }
+
+        else
+        {
+            arrow.GetComponent<Rigidbody2D>().rotation = 0;
+        }
+
+        if (move.GetHorizontalInput().y >= 0)
+        {
+            float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
+            Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+
+            if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero && !move.wallGrab)
+            {
+                arrow.GetComponent<Rigidbody2D>().rotation = 180;
+            }
+            else
+            {
+                arrow.GetComponent<Rigidbody2D>().rotation = angle;
+            }
+
+        }
+        else
+        {
+            float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
+            Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+            arrow.GetComponent<Rigidbody2D>().rotation = -angle;
         }
     }
 

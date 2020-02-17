@@ -28,6 +28,7 @@ public class SealMovement : MonoBehaviour
         _collision = GetComponent<Collision>();
         var vcam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = this.gameObject.transform;
+        //vcam.m_Lens.FieldOfView = Mathf.Lerp(vcam.m_Lens.FieldOfView, 30, 10f);
         originalScaleX = transform.localScale.x;
         WarpToPosition(PlayerManager.Instance.spawnPoint.transform.position);
     }
@@ -75,7 +76,7 @@ public class SealMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, _rb2D.velocity.y));
+        _rb2D.velocity = new Vector2(moveHorizontal * moveSpeed, _rb2D.velocity.y);
     }
 
     public void UpdateOriginalScaleX(int side)

@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     bool summoning = false;
     bool summoned = false;
     float maxHealth;
+    float originalFieldofView = 0;
     Throw throwScript;
     Summon summon;
 
@@ -48,6 +49,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         move = GetComponent<PlayerMovement>();
         animeScript = GetComponent<PlayerAnimationScript>();
         summon = GetComponent<Summon>();
+        SetCameraToFollowPlayer();
         maxHealth = health;
     }
 
@@ -178,6 +180,17 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         var vcam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = this.gameObject.transform;
+        /*if(originalFieldofView == 0)
+        {
+            originalFieldofView = vcam.m_Lens.FieldOfView;
+        }
+
+        if(vcam.m_Lens.FieldOfView != originalFieldofView)
+        {
+            
+            vcam.m_Lens.FieldOfView = Mathf.Lerp (vcam.m_Lens.FieldOfView ,originalFieldofView,10);
+            
+        }*/
     }
 
     public void DissolveSeal(float duration)
