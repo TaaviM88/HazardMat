@@ -139,6 +139,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         SetSummoning(true);
         //move.enabled = false;
         FreezePlayerMovement();
+        move.enabled = false;
         throwScript.enabled = false;
         summon.enabled = false;
         summoned = true;
