@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 4317960344332115407}
   - component: {fileID: 4317960344332115406}
   - component: {fileID: 4849821309298223965}
-  - component: {fileID: 4317960344332115405}
   - component: {fileID: 7576948386989789700}
+  - component: {fileID: 4317960344332115405}
+  - component: {fileID: 8034634867095391595}
+  - component: {fileID: 2797944420628642092}
   m_Layer: 0
   m_Name: Seal
   m_TagString: Untagged
@@ -157,20 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissolveTime: 1
   warpTime: 1
---- !u!114 &4317960344332115405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4317960344332115404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec5c0a26f8cdef4bb8818e2daf14303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  canMove: 1
+  scripts: []
 --- !u!114 &7576948386989789700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +182,54 @@ MonoBehaviour:
   onCeiling: 0
   wallSide: 0
   collisionRadius: 0.1
-  bottomOffset: {x: 0, y: -0.43}
+  bottomOffset: {x: 0, y: -0.53}
   ceilingOffset: {x: 0, y: -0.06}
   rightOffset: {x: 0.44, y: -0.29}
   leftOffset: {x: -0.45, y: -0.35}
+--- !u!114 &4317960344332115405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317960344332115404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec5c0a26f8cdef4bb8818e2daf14303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  canMove: 1
+--- !u!114 &8034634867095391595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317960344332115404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2b67d701c4d1942a9ebd59d3e6cb09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 4
+  moveSpeed: 2
+--- !u!114 &2797944420628642092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317960344332115404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a690b3b4a78d826469eb638d52e6f6ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  hoverSpeed: 10
+  maxDistance: 3
+  maxForce: 16
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256

@@ -42,7 +42,6 @@ public class PlayerAnimationScript : MonoBehaviour
 
     public void Flip(int side)
     {
-        Debug.Log("Flipataan hahmoa");
         if (move.wallGrab)
         {
             if (side == -1 && sr.flipX)
