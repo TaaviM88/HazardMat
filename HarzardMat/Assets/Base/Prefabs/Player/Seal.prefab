@@ -229,7 +229,9 @@ MonoBehaviour:
   moveSpeed: 4
   hoverSpeed: 10
   maxDistance: 3
-  maxForce: 16
+  maxForce: 32
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  timer: 0.1
+  height: 1

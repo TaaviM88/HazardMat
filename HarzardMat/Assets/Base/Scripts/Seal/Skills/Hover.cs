@@ -18,27 +18,34 @@ public class Hover : MonoBehaviour
     float originalScaleX;
     Rigidbody2D _rb2D;
     private Vector3 forceVector;
-
+    public float timer = 0.1f;
+    public float height = 4;
+    private float orginalHeight;
     // Start is called before the first frame update
 
     private void Start()
     {
+        orginalHeight = transform.position.y;
         _rb2D = GetComponent<Rigidbody2D>();
         _rb2D.gravityScale = 1;
+        //StartCoroutine(Timer());
     }
 
     private void Update()
     {
         //transform.position = ClampHeight((Vector3.up * Mathf.Cos(Time.time * oscillationRate) * ClampRange(oscillationRange)) + transform.position);
         moveHorizontal = Input.GetAxis("Horizontal");
+        Vector3 _newPosition = transform.position;
+        _newPosition.y -= Mathf.Sin(Time.time) * Time.deltaTime * height;
+        if (transform.position.y + orginalHeight < _newPosition.y || transform.position.y - orginalHeight > _newPosition.y)
+        {
+            //transform.position = _newPosition;
+        }
 
-        /*float y = Mathf.PingPong(hoverSpeed * Time.deltaTime, maxDistance);
-        Vector3 pos = new Vector3(transform.position.x, y, transform.position.z);
-        //transform.localPosition = pos;
-        */
-        //this.transform.position = Vector2.up * Mathf.Cos(Time.time);
+        float y = Mathf.PingPong(transform.position.y, transform.position.y + height);
+
+        transform.position += new Vector3(0, y, 0);
     }
-
     private void FixedUpdate()
     {
 
@@ -79,6 +86,19 @@ public class Hover : MonoBehaviour
 
     }
 
+    IEnumerator Timer()
+    {
+        while(true)
+        {
+            forceVector = Vector2.up * maxForce;
+
+           // _rb2D.AddForce(forceVector);
+            yield return new WaitForSeconds(timer);
+            
+        }
+        
+    }
+
    /* private float ClampRange(float value)
     {
         if (transform.position.y > upperHeightLimit)
@@ -108,5 +128,6 @@ public class Hover : MonoBehaviour
         return value;
     }
     */
+
 }
 
