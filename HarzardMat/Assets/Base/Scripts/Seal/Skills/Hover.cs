@@ -26,6 +26,7 @@ public class Hover : MonoBehaviour
     {
         _rb2D = GetComponent<Rigidbody2D>();
         originalScaleX = transform.localScale.x;
+
     }
 
     private void Update()
@@ -36,6 +37,9 @@ public class Hover : MonoBehaviour
         {
             transform.localScale = new Vector3((int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
         }
+
+
+
     }
 
     private void FixedUpdate()
@@ -43,7 +47,7 @@ public class Hover : MonoBehaviour
         _rb2D.velocity = new Vector2(moveHorizontal * moveSpeed, _rb2D.velocity.y);
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-        //  float distance = 1.0f;
+    
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider != null)
@@ -60,6 +64,19 @@ public class Hover : MonoBehaviour
         hit = Physics2D.Raycast(position, direction, distance, groundLayer);
 
     }
+        /* RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, maxDistance); 
 
-}
+          if(hit.collider != null && hit.collider.gameObject.layer == groundLayer)
+          {
+              if (hit.distance < maxDistance)
+              {
+                  forceVector = Vector2.up * ((maxDistance - hit.distance) / maxDistance) * maxForce;
+
+                  _rb2D.AddForce(forceVector);
+              }
+          }
+
+          Debug.DrawLine(transform.position, hit.point);*/
+
+ }
 
