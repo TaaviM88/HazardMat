@@ -12,7 +12,7 @@ public class EssentialLoader : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       // InstantiateUICanvas();
+        InstantiateUICanvas();
        // InstantiatePlayer();
         InstantiateGameManager();
         InstantiateAudioManager();
@@ -36,11 +36,11 @@ public class EssentialLoader : MonoBehaviour
 
     private void InstantiateUICanvas()
     {
-       /* if (UIManager.Instance == null)
+        if (UIManager.Instance == null)
         {
             //UIFade.Instance = Instantiate(UIScreen).GetComponent<UIFade>();
             Instantiate(UIScreen);
-        }*/
+        }
     }
 
     private void InstantiatePlayer()

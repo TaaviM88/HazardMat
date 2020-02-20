@@ -39,6 +39,7 @@ public class SealManager : MonoBehaviour
         var vcam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = this.gameObject.transform;
         WarpToPosition(PlayerManager.Instance.spawnPoint.transform.position);
+        DisableAllSkillScripts();
         //scripts = gameObject.GetComponents<MonoBehaviour>();
     }
 
@@ -100,7 +101,7 @@ public class SealManager : MonoBehaviour
                 break;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
         {
             EndSummoning();
         }
@@ -148,6 +149,15 @@ public class SealManager : MonoBehaviour
             {
                 script.enabled = false;
             }
+        }
+    }
+
+    private void DisableAllSkillScripts()
+    {
+
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = false;
         }
     }
 

@@ -117,6 +117,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
         sealBagPosition.transform.localScale = new Vector3(side, sealBagPosition.transform.localScale.y, sealBagPosition.transform.localScale.z);
         //Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
+        //UIManager.Instance.UpdateCombatLog($"current attackMode {attackMode}");
     }
 
     public void ToggleAttackMode()
