@@ -7,6 +7,8 @@ public class PlayerAnimationScript : MonoBehaviour
     private Animator anim;
     private PlayerMovement move;
     private Collision coll;
+    private Throw _throw;
+
     [HideInInspector]
     public SpriteRenderer sr;
 
@@ -17,6 +19,7 @@ public class PlayerAnimationScript : MonoBehaviour
         coll = GetComponent<Collision>();
         move = GetComponent<PlayerMovement>();
         sr = GetComponent<SpriteRenderer>();
+        _throw = GetComponent<Throw>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,10 @@ public class PlayerAnimationScript : MonoBehaviour
         //anim.SetBool("wallSlide", move.wallSlide);
         anim.SetBool("canMove", move.canMove);
         anim.SetBool("isDashing", move.isDashing);*/
+
+        anim.SetBool("isAiming", _throw.GetIsAming());
+        anim.SetBool("canMove", move.GetCanMove());
+
     }
 
     public void SetHorizontalMovement(float x, float y, float yVel)
@@ -40,21 +47,20 @@ public class PlayerAnimationScript : MonoBehaviour
         //anim.SetFloat("AttackButtonNegative", -y);
     }
 
+
+
     public void Flip(int side)
     {
         if (move.wallGrab)
         {
             if (side == -1 && sr.flipX)
             {
-
-                Debug.Log("perutaan flippaus");
                 return;
 
             }
             if (side == 1 && !sr.flipX)
             {
 
-                Debug.Log("perutaan flippaus");
                 return;
             }
         }

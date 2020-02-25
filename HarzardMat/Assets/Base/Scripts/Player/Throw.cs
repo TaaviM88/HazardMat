@@ -5,6 +5,12 @@ using UnityEngine;
 using DG.Tweening;
 public class Throw : MonoBehaviour
 {
+    private enum State
+    {
+        Idle,
+        Throwing,
+    }
+    private State state;
     Rigidbody2D weaponRb2D;
     ThrowWeapon throwWeaponScript;
     PlayerMovement move;
@@ -28,7 +34,7 @@ public class Throw : MonoBehaviour
     [Space]
     [Header("Bools")]
     public bool walking = true;
-    public bool aming = false;
+
     public bool hasWeapon = true;
     public bool pulling = false;
 
@@ -45,6 +51,7 @@ public class Throw : MonoBehaviour
         throwWeaponScript = weapon.GetComponent<ThrowWeapon>();
 
         throwWeaponScript.AddThrowWeaponScript(this);
+
         origLockPos = weapon.localPosition;
         origLockRot = weapon.localEulerAngles;
 
@@ -54,63 +61,111 @@ public class Throw : MonoBehaviour
         {
             arrow.gameObject.SetActive(false);
         }
+
+        ChangeState(State.Idle);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hasWeapon)
+        switch (state)
         {
-            if(Input.GetButtonDown("Fire1"))
+            case State.Idle:
+                if (!move.GetCanMove())
+                {
+                    ToggleCanMoveThrow(true);
+                    move.StartPlayerMovement();
+                    hasWeapon = true;
+                    pulling = false;
+                    wait = false;
+                    isWarping = false;
+                    isAiming = false;
+                }
+                break;
+            case State.Throwing:
+                if (move.GetCanMove())
+                {
+
+                    ToggleCanMoveThrow(false);
+                }
+
+                break;
+        }
+
+        HasWeapon();
+        PullWeapon();
+        Aim();
+        WaitWallGrab();
+    }
+
+    private void HasWeapon()
+    {
+        if (hasWeapon)
+        {
+            if (Input.GetButtonDown("Fire1"))
             {
-                throwWeaponScript.activated = true;
-                move.canMove = false;
-                //move.StopPlayerMovement();
+                ChangeState(State.Throwing);
+                PlayerManager.Instance.canChangeAttackMode = false;
                 move.FreezePlayerXMovement();
                 isAiming = true;
-                PlayerManager.Instance.canChangeAttackMode = false;
+                throwWeaponScript.activated = true;
             }
 
-            if(Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1"))
             {
                 WeaponThrow();
                 isAiming = false;
-            } 
+            }
         }
         else
         {
-            if(Input.GetButtonDown("Fire1") && throwWeaponScript.canPulled && !isWarping)
+            if (Input.GetButtonDown("Fire1") && throwWeaponScript.canPulled && !isWarping)
             {
                 WeaponStartPull();
             }
 
-            if(Input.GetButtonDown("Fire2") && throwWeaponScript.canPulled && !isWarping && !pulling)
+            if (Input.GetButtonDown("Fire2") && throwWeaponScript.canPulled && !isWarping && !pulling)
             {
-                WarpToWeapon();
-                isWarping = true;
+                WarpToWeapon();              
             }
+            if(state != State.Throwing)
+            {
+                ChangeState(State.Throwing);
+            }
+            
         }
+    }
 
-        if(pulling)
+    private void PullWeapon()
+    {
+        if (pulling)
         {
-            if(returnTime <1)
+            if (returnTime < 1)
             {
                 weapon.position = GetQuadraticCurvePoint(returnTime, pullPosition, curvePoint.position, weaponSlot.position);
                 returnTime += Time.deltaTime * 1.5f;
-                move.canMove = false;
             }
             else
             {
                 WeaponCatch();
             }
         }
+    }
 
-       /* if(isWarping)
+    private void WaitWallGrab()
+    {
+        if (wait)
         {
-            move.WallGrab();
-        }*/
+            if (!move.WallGrab())
+            {
+                move.WallGrab();
+            }
+        }
+    }
 
-        if(isAiming)
+    private void Aim()
+    {
+        if (isAiming)
         {
             AimArrow();
         }
@@ -121,23 +176,10 @@ public class Throw : MonoBehaviour
                 arrow.gameObject.SetActive(false);
             }
         }
-
-        if(wait)
-        {
-            if(!move.WallGrab())
-            {
-                move.WallGrab();
-            }
-        }
     }
 
     private void AimArrow()
     {
-        if (move.canMove)
-        {
-            move.canMove = false;
-        }
-
         if (!arrow.gameObject.activeInHierarchy)
         {
             arrow.gameObject.SetActive(true);
@@ -192,23 +234,21 @@ public class Throw : MonoBehaviour
         hasWeapon = true;
         weapon.localScale = new Vector3(1, 1, 1);
         throwWeaponScript.ToggleColliderTrigger(true);
-        move.canMove = true;
-        move.StartPlayerMovement();
         PlayerManager.Instance.canChangeAttackMode = true;
-        PlayerManager.Instance.SetCameraToFollowPlayer();   
+        PlayerManager.Instance.SetCameraToFollowPlayer();
+        ChangeState(State.Idle);
     }
 
     private void WarpToWeapon()
     {
-        move.canMove = false;
-        
+        isWarping = true;
         move.ShowGhost();
         //move.DisableGhost();
         material.DOFloat(1, "_DissolveAmount", warpDuration);
         PlayerManager.Instance.DissolveSeal(warpDuration);
         transform.DOMove(weapon.position, warpDuration).SetEase(Ease.InExpo).OnComplete(() => FinishWarp());
-        Rigidbody2D rb = move.GetRigidbody();
-        rb.isKinematic= true;
+        //Rigidbody2D rb = ;
+        move.GetRigidbody().isKinematic= true;
         move.ReleaseWallGrab();
     }
 
@@ -216,17 +256,13 @@ public class Throw : MonoBehaviour
     {
         material.DOFloat(0, "_DissolveAmount", warpDuration);
         PlayerManager.Instance.DissolveSealBack(warpDuration);
-        move.canMove = true;
-        //move.EnableGhost();
         isWarping = false;
         Rigidbody2D rb = move.GetRigidbody();
         rb.isKinematic = false;
-        
         //Remove if  you don't want to reset your Y velocity after warp
         rb.velocity = new Vector2(rb.velocity.x, 0);
         StartCoroutine(TryToWallGrab());
         WeaponStartPull();
-
     }
 
     IEnumerator TryToWallGrab()
@@ -245,7 +281,6 @@ public class Throw : MonoBehaviour
         weapon.DOBlendableLocalRotateBy(Vector2.right * 90, .5f);
         throwWeaponScript.activated = true;
         pulling = true;
-
     }
 
     private void WeaponThrow()
@@ -261,7 +296,6 @@ public class Throw : MonoBehaviour
         throwWeaponScript.SetCameraToFollowWeapon();
         throwWeaponScript.ThrowTheWeapon(move.GetHorizontalInput(), throwPower,move.side);
         throwWeaponScript.ResetRangeTimer();
-        
     }
 
     public Vector3 GetQuadraticCurvePoint(float t, Vector2 p0, Vector2 p1, Vector2 p2)
@@ -282,5 +316,18 @@ public class Throw : MonoBehaviour
         weapon.gameObject.SetActive(true);
     }
 
-    
+    public bool GetIsAming()
+    {
+        return isAiming;
+    }
+
+    private void ToggleCanMoveThrow(bool newBool)
+    {
+        move.ToggleCanMove(newBool);
+    }
+
+    private void ChangeState(State newState)
+    {
+        state = newState;
+    }
 }

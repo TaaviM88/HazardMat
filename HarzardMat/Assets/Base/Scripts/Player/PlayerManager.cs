@@ -8,13 +8,18 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     public static PlayerManager Instance;
     //private enum AttackMode {WeaponThrow,SummonFamiliar};
     //private AttackMode attackMode = AttackMode.WeaponThrow;
+
     AttackModeEnum.AttackMode attackMode;
     PlayerMovement move;
     PlayerAnimationScript animeScript;
+    Throw throwScript;
+    Summon summon;
+
     [Header("References")]
     public GameObject seal;
     public GameObject sealBagPosition;
     public GameObject spawnPoint;
+
     [Space]
     [Header("Parametres")]
     public float health = 100;
@@ -26,10 +31,9 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     bool isAlive = true;
     bool summoning = false;
     bool summoned = false;
+
     float maxHealth;
     float originalFieldofView = 0;
-    Throw throwScript;
-    Summon summon;
 
     // Start is called before the first frame update
     void Awake()
@@ -94,7 +98,6 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
                     {
                         summon.enabled = true;
                     }
-                    
                 }
                 
             break;
@@ -124,7 +127,6 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         //Jos vaihdellaan kahden moden välillä  
         //attackMode = attackMode == AttackMode.WeaponThrow ? AttackMode.SummonFamiliar : AttackMode.WeaponThrow;
-
         if((int)attackMode < System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length -1)
         {
             attackMode++;
@@ -170,12 +172,43 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
     public void Damage(float damageTaken)
     {
-        throw new System.NotImplementedException();
+        if (!iframeTimerOn)
+        {
+            if (damageTaken < maxHealth)
+            {
+                health = Mathf.Max(0, health - damageTaken);
+
+                if (health <= 0)
+                {
+                    Die();
+                }
+
+                //move.KnockBack();
+                //StartCoroutine(IFramesTimer());
+            }
+            else
+            {
+                health = Mathf.Max(0, health - damageTaken);
+
+                if (health <= 0)
+                {
+                    Die();
+                }
+            }
+        }
     }
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        if (isAlive == true)
+        {
+            /*isAlive = false;
+            move.canMove = false;
+            move.PauseMovements();
+            GameManager.Instance.PlayerDies();
+            */
+            Debug.Log("Player Dies");
+        }
     }
 
     public void SetCameraToFollowPlayer()
@@ -207,13 +240,13 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
     public void FreezePlayerMovement()
     {
-        move.canMove = false;
+        move.ToggleCanMove(false);
         move.FreezePlayerXMovement();
     }
 
     public void StartPlayerMovement()
     {
         move.StartPlayerMovement();
-        move.canMove = true;
+        move.ToggleCanMove(true);
     }
 }

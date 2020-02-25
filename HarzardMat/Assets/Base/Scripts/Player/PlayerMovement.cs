@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpLerp = 10;
     [Space]
     [Header("Booleans")]
-    public bool canMove = true, wallGrab, isDashing;
-
+    public bool wallGrab, isDashing;
+    private bool canMove = true;
     private bool groundTouch;
     private bool hasDashed;
     private bool jumping = false;
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(bool attackJump)
     {
-        if (!coll.onGround || !canMove)
+        if (!coll.onGround || !GetCanMove())
         {
             //Jump(Vector2.up, false, false);
             jumping = false;
@@ -182,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (!canMove)
+        if (!GetCanMove())
         {
             _rb2D.velocity = new Vector2(0, _rb2D.velocity.y);
             return;
@@ -257,6 +257,16 @@ public class PlayerMovement : MonoBehaviour
         _rb2D.constraints = RigidbodyConstraints2D.None;
         transform.localEulerAngles = new Vector3(0,0,0);
         _rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    public void ToggleCanMove(bool newbool)
+    {
+        canMove = newbool;
+    }
+
+    public bool GetCanMove()
+    {
+        return canMove;
     }
 
     public void ShowGhost()
