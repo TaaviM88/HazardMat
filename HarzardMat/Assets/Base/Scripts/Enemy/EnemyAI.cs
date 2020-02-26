@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         Spawning,
+        Idle,
         Roaming,
         ChaseTarget,
         Attacking,
@@ -15,7 +16,8 @@ public class EnemyAI : MonoBehaviour
     }
     private Vector3 startingPosition;
     private Vector3 roamPosition;
-    //private EnemyPathfindingMovement pathfindingMovement;
+    private EnemyPathfinding pathfind;
+    Animator anime;
     //private Shooting shoot;
 
     
@@ -28,7 +30,8 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //pathfindingMovement = GetComponent<EnemyPathfindingMovement>();
+        pathfind = GetComponent<EnemyPathfinding>();
+        anime = GetComponent<Animator>();
         //shoot = GetComponent<Shooting>();
         state = State.Spawning;
     }
@@ -36,7 +39,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         startingPosition = transform.position;
-        roamPosition = GetRoamingPosition();
+        //roamPosition = GetRoamingPosition();
     }
 
     // Update is called once per frame
@@ -46,13 +49,16 @@ public class EnemyAI : MonoBehaviour
         {
             default:
             case State.Roaming:
-                //pathfindingMovement.MoveToTimer(roamPosition);
+                //pathfind.MoveToTimer(roamPosition);
 
                 float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance)
                 {
                     roamPosition = GetRoamingPosition();
                 }
+                FindTarget();
+                break;
+            case State.Idle:
                 FindTarget();
                 break;
             case State.ChaseTarget:
@@ -80,11 +86,25 @@ public class EnemyAI : MonoBehaviour
 
     private void FindTarget()
     {
-        throw new NotImplementedException();
+        if(Vector3.Distance(transform.position,PlayerManager.Instance.transform.position) < targetRange)
+        {
+            anime.SetBool("isWalking", true);
+            pathfind.UpdateTargetTransform(PlayerManager.Instance.transform);
+            SetState(State.ChaseTarget);
+        }
+        else
+        {
+            anime.SetBool("isWalking", false);
+        }
     }
 
     public static Vector3 GetRandomDir()
     {
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
+    }
+
+    public void SetState(State newState)
+    {
+        state = newState;
     }
 }
