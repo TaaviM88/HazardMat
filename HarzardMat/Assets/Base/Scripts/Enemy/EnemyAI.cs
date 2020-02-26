@@ -61,12 +61,19 @@ public class EnemyAI : MonoBehaviour
             case State.Idle:
                 FindTarget();
                 break;
+
             case State.ChaseTarget:
                 //pathfindingMovement.MoveToTimer(PlayerManager.Instance.GetPlayerPosition());
                 if (Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange)
                 {
                     //pathfindingMovement.StopMoving();
                     //shoot.FireWeapon((PlayerManager.Instance.GetPlayerPosition() - transform.position));
+                    anime.SetTrigger("Attack");
+                    Debug.Log("Attacking");
+                }
+                else
+                {
+                    SetState(State.Idle);
                 }
                 break;
             case State.Attacking:
@@ -75,8 +82,11 @@ public class EnemyAI : MonoBehaviour
             case State.Spawning:
                 //Spawn Animation
                 break;
+            
 
         }
+
+        Debug.Log(state);
     }
 
     private Vector3 GetRoamingPosition()
@@ -107,4 +117,13 @@ public class EnemyAI : MonoBehaviour
     {
         state = newState;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, targetRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
 }

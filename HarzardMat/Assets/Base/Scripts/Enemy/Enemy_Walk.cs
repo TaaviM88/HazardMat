@@ -12,9 +12,9 @@ public class Enemy_Walk : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = pathfind.GetTargetTransform();
         rb = animator.GetComponent<Rigidbody2D>();
         pathfind = animator.GetComponent<EnemyPathfinding>();
+        player = pathfind.GetTargetTransform();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
