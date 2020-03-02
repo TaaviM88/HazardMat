@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private EnemyPathfinding pathfind;
+    private EnemyAttack eAttack;
     Animator anime;
     //private Shooting shoot;
 
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     {
         pathfind = GetComponent<EnemyPathfinding>();
         anime = GetComponent<Animator>();
+        eAttack = GetComponent<EnemyAttack>();
         //shoot = GetComponent<Shooting>();
         state = State.Spawning;
     }
@@ -69,7 +71,8 @@ public class EnemyAI : MonoBehaviour
                     //pathfindingMovement.StopMoving();
                     //shoot.FireWeapon((PlayerManager.Instance.GetPlayerPosition() - transform.position));
                     anime.SetTrigger("Attack");
-                    Debug.Log("Attacking");
+                    SetState(State.Attacking);
+                    //Debug.Log("Attacking");
                 }
                 else
                 {
@@ -78,6 +81,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             case State.Attacking:
                 //Attacking
+
                 break;
             case State.Spawning:
                 //Spawn Animation
@@ -120,10 +124,17 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, targetRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    public void DoDamage()
+    {
+        //Debug.Log("Teen vahinkoa");
+
+        eAttack.Attack();
     }
 
 }

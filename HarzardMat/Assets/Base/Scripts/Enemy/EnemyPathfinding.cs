@@ -67,13 +67,13 @@ public class EnemyPathfinding : MonoBehaviour
         {
             transform.localScale = flipped;
             transform.Rotate(0, 180f, 0);
-            isFlipped = false;
+            isFlipped = true;
         }
         else if(transform.position.z <target.position.x && !isFlipped)
         {
             transform.localScale = flipped;
             transform.Rotate(0f, 180f, 0f);
-            isFlipped = true;
+            isFlipped = false;
         }
     }
 
