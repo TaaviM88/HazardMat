@@ -454,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321846455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000023841858, y: 1.3824443, z: -10}
+  m_LocalPosition: {x: 0.00000047683716, y: 1.3824443, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 559895603}
@@ -530,7 +530,7 @@ MonoBehaviour:
   attackpos: {fileID: 1075001548}
   attackRange: 0.42
   damage: 10
-  attackCooldown: 1
+  attackCooldown: 5
   Players:
     serializedVersion: 2
     m_Bits: 1024
@@ -2291,7 +2291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860209800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000023841858, y: 1.3824443, z: -10}
+  m_LocalPosition: {x: 0.00000047683716, y: 1.3824443, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
