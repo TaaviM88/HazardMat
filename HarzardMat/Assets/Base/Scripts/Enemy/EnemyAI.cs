@@ -66,10 +66,11 @@ public class EnemyAI : MonoBehaviour
 
             case State.ChaseTarget:
                 //pathfindingMovement.MoveToTimer(PlayerManager.Instance.GetPlayerPosition());
-                if (Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange)
+                if (Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange && eAttack.GetCanAttack())
                 {
                     //pathfindingMovement.StopMoving();
                     //shoot.FireWeapon((PlayerManager.Instance.GetPlayerPosition() - transform.position));
+                    
                     anime.SetTrigger("Attack");
                     SetState(State.Attacking);
                     //Debug.Log("Attacking");

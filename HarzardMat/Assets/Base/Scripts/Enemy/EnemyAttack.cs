@@ -48,6 +48,11 @@ public class EnemyAttack : MonoBehaviour
         canAttack = true;
     }
 
+    public bool GetCanAttack()
+    {
+        return canAttack;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
