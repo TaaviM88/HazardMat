@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 8916722276354822252}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -750,7 +750,6 @@ MonoBehaviour:
   knockbackForceX: 15
   knockbackForceY: 5
   wallJumpLerp: 10
-  canMove: 1
   wallGrab: 0
   isDashing: 0
   side: 1
@@ -826,7 +825,6 @@ MonoBehaviour:
   throwPower: 10
   warpDuration: 0.5
   walking: 1
-  aming: 0
   hasWeapon: 1
   pulling: 0
 --- !u!114 &8916722276354822252

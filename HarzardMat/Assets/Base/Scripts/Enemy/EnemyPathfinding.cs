@@ -13,8 +13,8 @@ public class EnemyPathfinding : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 lastMoveDir;
     public bool isFlipped = false;
-
-    Transform target;
+    public float seeRange = 5;
+    Vector3 target;
     Rigidbody2D _rb2d;
     // Start is called before the first frame update
     void Awake()
@@ -27,7 +27,7 @@ public class EnemyPathfinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -58,31 +58,59 @@ public class EnemyPathfinding : MonoBehaviour
         //moveDir = (this.transform.position - targetPosition).normalized;
     }
 
-    public void LookAtPlayer()
+    public bool LookAtPlayer()
     {
-        Vector3 flipped = transform.localScale;
-        flipped.z *= -1;
+        Vector3 rayCastStartPoint = transform.position + new Vector3(0, 0, 0);
+     
+        RaycastHit2D hit = Physics2D.Raycast(rayCastStartPoint, transform.localScale.x * transform.right, seeRange);
+      
+        if(hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+            if (hit.collider.tag == "Player")
+            {
+                Debug.Log("Näen pelaajan");
 
-        if (transform.position.x > target.position.x && isFlipped)
-        {
-            transform.localScale = flipped;
-            transform.Rotate(0, 180f, 0);
-            isFlipped = true;
+                return true;
+            }
+
         }
-        else if(transform.position.z <target.position.x && !isFlipped)
+        else
         {
-            transform.localScale = flipped;
-            transform.Rotate(0f, 180f, 0f);
-            isFlipped = false;
+            FlipEnemy();
         }
+
+        return false;
+
+        /*
+                if (transform.position.x > target.x && isFlipped)
+                {
+                    transform.localScale = flipped;
+                    transform.Rotate(0f, 180f, 0f);
+                    isFlipped = true;
+                }
+                else if(transform.position.x <target.x && !isFlipped)
+                {
+                    transform.localScale = flipped;
+                    transform.Rotate(0f, 180f, 0f);
+                    isFlipped = false;
+                }
+                */
     }
 
-    public void UpdateTargetTransform(Transform newtarget)
+    public void FlipEnemy()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.x *= -1;
+        transform.localScale = flipped;
+    }
+
+    public void UpdateTargetTransform(Vector3 newtarget)
     {
         target = newtarget;
     }
 
-    public Transform GetTargetTransform()
+    public Vector3 GetTargetTransform()
     {
         return target;
     }

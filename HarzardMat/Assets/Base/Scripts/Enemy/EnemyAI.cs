@@ -34,13 +34,14 @@ public class EnemyAI : MonoBehaviour
         pathfind = GetComponent<EnemyPathfinding>();
         anime = GetComponent<Animator>();
         eAttack = GetComponent<EnemyAttack>();
+        startingPosition = transform.position;
         //shoot = GetComponent<Shooting>();
         state = State.Spawning;
     }
 
     private void Start()
     {
-        startingPosition = transform.position;
+        
         //roamPosition = GetRoamingPosition();
     }
 
@@ -52,16 +53,19 @@ public class EnemyAI : MonoBehaviour
             default:
             case State.Roaming:
                 //pathfind.MoveToTimer(roamPosition);
-
-                float reachedPositionDistance = 1f;
-                if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance)
+                if(IsInSpawn())
                 {
-                    roamPosition = GetRoamingPosition();
+                    SetState(State.Idle);
                 }
-                FindTarget();
+                else
+                {
+                    //pathfind.MoveToTimer(startingPosition);
+                    pathfind.UpdateTargetTransform(startingPosition);
+
+                }
                 break;
             case State.Idle:
-                FindTarget();
+                    FindTarget();
                 break;
 
             case State.ChaseTarget:
@@ -87,11 +91,10 @@ public class EnemyAI : MonoBehaviour
             case State.Spawning:
                 //Spawn Animation
                 break;
-            
-
         }
 
-        Debug.Log(state);
+        //Debug.Log(IsInSpawn() + " state " + state );
+
     }
 
     private Vector3 GetRoamingPosition()
@@ -104,13 +107,35 @@ public class EnemyAI : MonoBehaviour
         if(Vector3.Distance(transform.position,PlayerManager.Instance.transform.position) < targetRange)
         {
             anime.SetBool("isWalking", true);
-            pathfind.UpdateTargetTransform(PlayerManager.Instance.transform);
+            pathfind.UpdateTargetTransform(PlayerManager.Instance.transform.position);
             SetState(State.ChaseTarget);
+        }
+        else if(IsInSpawn())
+        {
+            anime.SetBool("isWalking", false);
+
         }
         else
         {
-            anime.SetBool("isWalking", false);
+            anime.SetBool("isWalking", true);
+            SetState(State.Roaming);
         }
+    }
+
+
+    public bool IsInSpawn()
+    {
+        bool isInSpawn;
+        float reachedPositionDistance = 1f;
+        if (Vector3.Distance(transform.position, startingPosition) < reachedPositionDistance)
+        {
+            isInSpawn = true;
+        }
+        else
+        {
+            isInSpawn = false;
+        }
+        return isInSpawn;
     }
 
     public static Vector3 GetRandomDir()
@@ -121,6 +146,11 @@ public class EnemyAI : MonoBehaviour
     public void SetState(State newState)
     {
         state = newState;
+    }
+
+    public State GetState()
+    {
+        return state;
     }
 
     private void OnDrawGizmos()
