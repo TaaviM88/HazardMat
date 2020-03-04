@@ -177,7 +177,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
             if (damageTaken < maxHealth)
             {
                 health = Mathf.Max(0, health - damageTaken);
-
+                Debug.Log(health);
                 if (health <= 0)
                 {
                     Die();

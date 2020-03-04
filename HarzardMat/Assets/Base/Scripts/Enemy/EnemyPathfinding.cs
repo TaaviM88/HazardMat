@@ -66,14 +66,11 @@ public class EnemyPathfinding : MonoBehaviour
       
         if(hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
             if (hit.collider.tag == "Player")
             {
-                Debug.Log("Näen pelaajan");
 
                 return true;
             }
-
         }
         else
         {

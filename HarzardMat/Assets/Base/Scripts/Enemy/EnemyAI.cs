@@ -25,6 +25,7 @@ public class EnemyAI : MonoBehaviour
     //public float randomMovementRangeX = 10f, randomMovementRangeY = 70f;
     public float targetRange = 9;
     public float attackRange = 3;
+    public bool attacking = false;
     private State state;
     bool isAlive = true;
 
@@ -48,6 +49,11 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isAlive)
+        {
+            return;
+        }
+
         switch (state)
         {
             default:
@@ -60,12 +66,19 @@ public class EnemyAI : MonoBehaviour
                 else
                 {
                     //pathfind.MoveToTimer(startingPosition);
-                    pathfind.UpdateTargetTransform(startingPosition);
-
+                    if(!FindTarget())
+                    {
+                        pathfind.UpdateTargetTransform(startingPosition);
+                    }
+                    
                 }
+
                 break;
             case State.Idle:
-                    FindTarget();
+                if(!FindTarget())
+                {
+                    GotoSpawn();
+                }                
                 break;
 
             case State.ChaseTarget:
@@ -74,10 +87,12 @@ public class EnemyAI : MonoBehaviour
                 {
                     //pathfindingMovement.StopMoving();
                     //shoot.FireWeapon((PlayerManager.Instance.GetPlayerPosition() - transform.position));
-                    
-                    anime.SetTrigger("Attack");
-                    SetState(State.Attacking);
+
+
+                    //SetState(State.Attacking);
                     //Debug.Log("Attacking");
+
+                    return;
                 }
                 else
                 {
@@ -86,14 +101,22 @@ public class EnemyAI : MonoBehaviour
                 break;
             case State.Attacking:
                 //Attacking
-
+                if(Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange && eAttack.GetCanAttack() && !attacking)
+                {
+                    anime.SetTrigger("Attack");
+                    attacking = true;
+                }
+                else
+                {
+                    SetState(State.Idle);
+                }
                 break;
             case State.Spawning:
                 //Spawn Animation
                 break;
         }
 
-        //Debug.Log(IsInSpawn() + " state " + state );
+        Debug.Log(" state " + state );
 
     }
 
@@ -102,15 +125,23 @@ public class EnemyAI : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void FindTarget()
+    private bool FindTarget()
     {
-        if(Vector3.Distance(transform.position,PlayerManager.Instance.transform.position) < targetRange)
+        if (Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < targetRange)
         {
             anime.SetBool("isWalking", true);
             pathfind.UpdateTargetTransform(PlayerManager.Instance.transform.position);
             SetState(State.ChaseTarget);
+            return true;
         }
-        else if(IsInSpawn())
+        else
+            return false;
+        
+    }
+
+    private void GotoSpawn()
+    {
+        if (IsInSpawn())
         {
             anime.SetBool("isWalking", false);
 
@@ -121,7 +152,6 @@ public class EnemyAI : MonoBehaviour
             SetState(State.Roaming);
         }
     }
-
 
     public bool IsInSpawn()
     {
@@ -164,7 +194,6 @@ public class EnemyAI : MonoBehaviour
     public void DoDamage()
     {
         //Debug.Log("Teen vahinkoa");
-
         eAttack.Attack();
     }
 

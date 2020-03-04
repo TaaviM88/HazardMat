@@ -20,6 +20,7 @@ public class EnemyAttackAnimationState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        ai.attacking = false;
         ai.SetState(EnemyAI.State.Idle);       
     }
 

@@ -22,15 +22,22 @@ public class Enemy_Walk : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
-      if(  AI.GetState() == EnemyAI.State.ChaseTarget)
+        float reachedPositionDistance = 1f;
+      
+        if (AI.GetState() == EnemyAI.State.ChaseTarget)
         {
             if (pathfind.LookAtPlayer())
             {
                 Vector2 target = new Vector2(pathfind.GetTargetTransform().x, rb.position.y); //pathfind.GetTargetTransform().position; //new Vector2(player.position.x, rb.position.y);
                 Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
                 CheckFacingDirection(animator, newPos);
-
-                rb.MovePosition(newPos);
+                if (Vector3.Distance(animator.transform.position, target) < reachedPositionDistance)
+                {
+                    AI.SetState(EnemyAI.State.Attacking);
+                    return;
+                }
+                else                
+                    rb.MovePosition(newPos);
             }
         }
      
@@ -40,6 +47,17 @@ public class Enemy_Walk : StateMachineBehaviour
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             CheckFacingDirection(animator, newPos);
             rb.MovePosition(newPos);
+            //Debug.Log(Vector3.Distance(animator.transform.position, target));
+            /* if (Vector3.Distance(animator.transform.position, target) < reachedPositionDistance)
+             {
+                 Debug.Log("Lul");
+                 //AI.SetState(EnemyAI.State.Attacking);
+                 return;
+             }
+             else
+             {
+
+             }*/
         }
         
     }

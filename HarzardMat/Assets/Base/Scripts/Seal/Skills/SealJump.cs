@@ -11,7 +11,7 @@ public class SealJump : MonoBehaviour
     public float moveSpeed = 7;
     //private bool jumping = false;
     private bool groundTouch;
-    private int side = 1;
+    //private int side = 1;
     private Vector2 moveDir;
     // Start is called before the first frame update
     void Start()
