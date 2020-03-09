@@ -116,7 +116,7 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
 
-        Debug.Log(" state " + state );
+        //Debug.Log(" state " + state );
 
     }
 
