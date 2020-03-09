@@ -372,6 +372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatlog: {fileID: 1621125317014398030}
+  typingSpeed: 0.01
+  logQueueList: []
 --- !u!1 &1621125317502041301
 GameObject:
   m_ObjectHideFlags: 0

@@ -949,6 +949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: '- I triggered once'
   triggersOnce: 1
+  cooldownTime: 5
 --- !u!61 &750715046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1600,6 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: '- Hey, I''m third trigger ^_^'
   triggersOnce: 0
+  cooldownTime: 5
 --- !u!61 &1159548213
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1889,8 +1891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7624d4250d29045b7e6fd53922db26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '- Hey, I''m the first tirgger. The most funnies one.'
+  text: '- Hey, I''m the first trigger. The most funnies one.'
   triggersOnce: 0
+  cooldownTime: 5
 --- !u!61 &1345433960
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3169,6 +3172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: '- Spooky ghost *_*'
   triggersOnce: 0
+  cooldownTime: 5
 --- !u!61 &2143220403
 BoxCollider2D:
   m_ObjectHideFlags: 0

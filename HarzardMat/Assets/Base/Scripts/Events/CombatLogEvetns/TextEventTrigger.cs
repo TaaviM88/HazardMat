@@ -7,7 +7,15 @@ public class TextEventTrigger : MonoBehaviour
     // public int id;
     public string text;
     public bool triggersOnce = false;
-    bool isTriggered = false;
+    public float cooldownTime = 5f;
+    bool isTriggered = false, cooldownOn = false;
+
+    IEnumerator Cooldown()
+    {
+        cooldownOn = true;
+        yield return new WaitForSeconds(cooldownTime);
+        cooldownOn = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,11 +23,15 @@ public class TextEventTrigger : MonoBehaviour
         {
             if (collision.tag == "Player")
             {
-                GameEvents.current.UpdateBattleLog(text);
-                if (triggersOnce && !isTriggered)
+                if (!cooldownOn)
                 {
-                    isTriggered = true;
+                    GameEvents.current.UpdateBattleLog(text);
+                    StartCoroutine(Cooldown());
+                    if (triggersOnce && !isTriggered)
+                    {
+                        isTriggered = true;
 
+                    }
                 }
             }
         }
