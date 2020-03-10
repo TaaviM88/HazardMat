@@ -5,15 +5,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum State
-    {
-        Spawning,
-        Idle,
-        Roaming,
-        ChaseTarget,
-        Attacking,
-        Dying,
-    }
+ 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private EnemyPathfinding pathfind;
@@ -26,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     public float targetRange = 9;
     public float attackRange = 3;
     public bool attacking = false;
-    private State state;
+    private EnemyAIState state;
     bool isAlive = true;
 
     // Start is called before the first frame update
@@ -37,7 +29,7 @@ public class EnemyAI : MonoBehaviour
         eAttack = GetComponent<EnemyAttack>();
         startingPosition = transform.position;
         //shoot = GetComponent<Shooting>();
-        state = State.Spawning;
+        state = EnemyAIState.Spawning;
     }
 
     private void Start()
@@ -57,11 +49,11 @@ public class EnemyAI : MonoBehaviour
         switch (state)
         {
             default:
-            case State.Roaming:
+            case EnemyAIState.Roaming:
                 //pathfind.MoveToTimer(roamPosition);
                 if(IsInSpawn())
                 {
-                    SetState(State.Idle);
+                    SetState(EnemyAIState.Idle);
                 }
                 else
                 {
@@ -74,14 +66,14 @@ public class EnemyAI : MonoBehaviour
                 }
 
                 break;
-            case State.Idle:
+            case EnemyAIState.Idle:
                 if(!FindTarget())
                 {
                     GotoSpawn();
                 }                
                 break;
 
-            case State.ChaseTarget:
+            case EnemyAIState.ChaseTarget:
                 //pathfindingMovement.MoveToTimer(PlayerManager.Instance.GetPlayerPosition());
                 if (Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange && eAttack.GetCanAttack())
                 {
@@ -96,10 +88,10 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    SetState(State.Idle);
+                    SetState(EnemyAIState.Idle);
                 }
                 break;
-            case State.Attacking:
+            case EnemyAIState.Attacking:
                 //Attacking
                 if(Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange && eAttack.GetCanAttack() && !attacking)
                 {
@@ -108,10 +100,10 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    SetState(State.Idle);
+                    SetState(EnemyAIState.Idle);
                 }
                 break;
-            case State.Spawning:
+            case EnemyAIState.Spawning:
                 //Spawn Animation
                 break;
         }
@@ -131,7 +123,7 @@ public class EnemyAI : MonoBehaviour
         {
             anime.SetBool("isWalking", true);
             pathfind.UpdateTargetTransform(PlayerManager.Instance.transform.position);
-            SetState(State.ChaseTarget);
+            SetState(EnemyAIState.ChaseTarget);
             return true;
         }
         else
@@ -149,7 +141,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             anime.SetBool("isWalking", true);
-            SetState(State.Roaming);
+            SetState(EnemyAIState.Roaming);
         }
     }
 
@@ -173,12 +165,12 @@ public class EnemyAI : MonoBehaviour
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
     }
 
-    public void SetState(State newState)
+    public void SetState(EnemyAIState newState)
     {
         state = newState;
     }
 
-    public State GetState()
+    public EnemyAIState GetState()
     {
         return state;
     }

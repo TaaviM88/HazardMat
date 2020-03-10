@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     //private enum AttackMode {WeaponThrow,SummonFamiliar};
     //private AttackMode attackMode = AttackMode.WeaponThrow;
 
-    AttackModeEnum.AttackMode attackMode;
+    PlayerAttackState attackMode;
     PlayerMovement move;
     PlayerAnimationScript animeScript;
     Throw throwScript;
@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         switch(attackMode)
         {
 
-            case AttackModeEnum.AttackMode.WeaponThrow:
+            case PlayerAttackState.WeaponThrow:
                 if(!throwScript.enabled)
                 {
                     throwScript.EnableScript();
@@ -89,7 +89,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
                 break;
 
-            case AttackModeEnum.AttackMode.SummonFamiliar:
+            case PlayerAttackState.SummonFamiliar:
                 if(throwScript.enabled)
                 {
                     throwScript.DisableScript();
@@ -102,7 +102,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
                 
             break;
 
-            case AttackModeEnum.AttackMode.None:
+            case PlayerAttackState.None:
                 if (throwScript.enabled)
                 {
                     throwScript.DisableScript();
@@ -127,7 +127,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         //Jos vaihdellaan kahden moden välillä  
         //attackMode = attackMode == AttackMode.WeaponThrow ? AttackMode.SummonFamiliar : AttackMode.WeaponThrow;
-        if((int)attackMode < System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length -1)
+        if((int)attackMode < System.Enum.GetValues(typeof(PlayerAttackState)).Length -1)
         {
             attackMode++;
         }

@@ -20,7 +20,7 @@ public class Enemy_Spawn : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemyAI.SetState(EnemyAI.State.Idle);   
+        enemyAI.SetState(EnemyAIState.Idle);   
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

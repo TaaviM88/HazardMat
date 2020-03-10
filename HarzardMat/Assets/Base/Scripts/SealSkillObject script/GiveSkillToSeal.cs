@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GiveSkillToSeal : MonoBehaviour
 {
-    public SealSkillModeEnum.SkillMode skillMode;
+    public SealSkillState skillMode;
     // Start is called before the first frame update
    
-    public SealSkillModeEnum.SkillMode GetSkill()
+    public SealSkillState GetSkill()
     {
         Destroy(gameObject,0.1f);
         return skillMode;

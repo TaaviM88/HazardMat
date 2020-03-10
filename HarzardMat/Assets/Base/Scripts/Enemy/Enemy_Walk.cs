@@ -24,7 +24,7 @@ public class Enemy_Walk : StateMachineBehaviour
     {
         float reachedPositionDistance = 1f;
       
-        if (AI.GetState() == EnemyAI.State.ChaseTarget)
+        if (AI.GetState() == EnemyAIState.ChaseTarget)
         {
             if (pathfind.LookAtPlayer())
             {
@@ -33,7 +33,7 @@ public class Enemy_Walk : StateMachineBehaviour
                 CheckFacingDirection(animator, newPos);
                 if (Vector3.Distance(animator.transform.position, target) < reachedPositionDistance)
                 {
-                    AI.SetState(EnemyAI.State.Attacking);
+                    AI.SetState(EnemyAIState.Attacking);
                     return;
                 }
                 else                

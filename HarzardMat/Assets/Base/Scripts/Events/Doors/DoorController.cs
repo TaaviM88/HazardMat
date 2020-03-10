@@ -11,6 +11,7 @@ public class DoorController : MonoBehaviour
     public Vector2 moveToPos;
     Vector2 originalpos;
     bool isOpen = false;
+    public DoorState state;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +20,16 @@ public class DoorController : MonoBehaviour
         GameEvents.current.onDoorwayTriggerExit += OnDoorwayClose;
     }
 
+
+
     private void OnDoorwayClose(int id)
     {
         if(id == this.id)
         {
-            if (isOpen)
+            if (state == DoorState.open)
             {
                 transform.DOLocalMoveY(originalpos.y, moveSpeed);
-                isOpen = false;
+                state = DoorState.close;
             }
         }
     }
@@ -35,10 +38,10 @@ public class DoorController : MonoBehaviour
     {
         if(id == this.id)
         {
-            if (!isOpen)
+            if (state == DoorState.close)
             {
                 transform.DOLocalMoveY(moveToPos.y, moveSpeed);
-                isOpen = true;
+                state = DoorState.open;
             }
         }
     }

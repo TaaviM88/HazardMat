@@ -8,7 +8,7 @@ public class SealManager : MonoBehaviour
     public float dissolveTime = 1f;
     public float warpTime = 1f;
     bool canMove = false;
-    SealSkillModeEnum.SkillMode skillMode = SealSkillModeEnum.SkillMode.crawl;
+    SealSkillState skillMode = SealSkillState.crawl;
     Vector3 startPoint;
     Material material;
     CapsuleCollider2D capsuleCollider2D;
@@ -49,7 +49,7 @@ public class SealManager : MonoBehaviour
         switch(skillMode)
         {
             //movement
-            case SealSkillModeEnum.SkillMode.crawl:
+            case SealSkillState.crawl:
                 /*if(!sealMovement.enabled)
                 {
                     EnableScript(sealMovement.ToString());
@@ -60,33 +60,33 @@ public class SealManager : MonoBehaviour
                 
                 break;
 
-            case SealSkillModeEnum.SkillMode.electricity:
+            case SealSkillState.electricity:
 
                 break;
 
-            case SealSkillModeEnum.SkillMode.fat:
+            case SealSkillState.fat:
                 
                 break;
 
-            case SealSkillModeEnum.SkillMode.flat:
+            case SealSkillState.flat:
 
                 break;
 
-            case SealSkillModeEnum.SkillMode.hover:
+            case SealSkillState.hover:
                 //X-akseli
                 EnableScript(hoverScript.ToString());
 
                 break;
 
-            case SealSkillModeEnum.SkillMode.FloatingVertical:
+            case SealSkillState.FloatingVertical:
                 //Y-akseli
                 break;
 
-            case SealSkillModeEnum.SkillMode.fly:
+            case SealSkillState.fly:
 
                 break;
 
-            case SealSkillModeEnum.SkillMode.jump:
+            case SealSkillState.jump:
                 /*if (!jumpScript.enabled)
                 {
                     EnableScript(jumpScript.ToString());
@@ -96,7 +96,7 @@ public class SealManager : MonoBehaviour
                 EnableScript(jumpScript.ToString());
                 break;
 
-            case SealSkillModeEnum.SkillMode.oil:
+            case SealSkillState.oil:
 
                 break;
         }
@@ -116,7 +116,7 @@ public class SealManager : MonoBehaviour
         }
     }
 
-    public void ChangeSkill(SealSkillModeEnum.SkillMode newSkill)
+    public void ChangeSkill(SealSkillState newSkill)
     {
         skillMode = newSkill;
     }
@@ -124,7 +124,7 @@ public class SealManager : MonoBehaviour
     public void ToggleSkill()
     {
 
-        if ((int)skillMode < System.Enum.GetValues(typeof(SealSkillModeEnum.SkillMode)).Length - 1)
+        if ((int)skillMode < System.Enum.GetValues(typeof(SealSkillState)).Length - 1)
         {
             skillMode++;
         }
