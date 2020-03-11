@@ -6,11 +6,17 @@ public class DoorTriggerArea : MonoBehaviour
 {
     public int id;
     public bool stayOpen = false;
+    public string description;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
             //Debug.Log(collision.gameObject.name);
+            if (description != "")
+            {
+                GameEvents.current.UpdateBattleLog(description);
+            }
+            
             GameEvents.current.DoorwayTriggerEnter(id);
             //GameEvents.current.UpdateBattleLog("Hey, door is opening!");
         }

@@ -1,4 +1,11 @@
 ﻿#region Enemy enums
+public enum EnemyType
+{
+    standing,
+    wandering,
+    flying,
+}
+
 public enum EnemyState
 {
 
@@ -9,7 +16,9 @@ public enum EnemyAIState
     Idle,
     Roaming,
     ChaseTarget,
+    flyforward,
     Attacking,
+    TakingDamage,
     Dying,
 }
 #endregion
@@ -23,15 +32,18 @@ public enum PlayerAttackState
 
 public enum SealSkillState
 {
+    //basic movement done
     crawl, 
-    fly, 
+    fly,
+    //done
     hover, 
-    FloatingVertical, 
+    FloatingVertical,
+    //done
     jump, 
     fat, 
     oil, 
     electricity, 
-    flat
+    flat,
 }
 
 public enum DoorState

@@ -100,6 +100,7 @@ public class EnemyPathfinding : MonoBehaviour
         Vector3 flipped = transform.localScale;
         flipped.x *= -1;
         transform.localScale = flipped;
+        enemy.side = (int)flipped.x;
     }
 
     public void UpdateTargetTransform(Vector3 newtarget)
@@ -111,4 +112,5 @@ public class EnemyPathfinding : MonoBehaviour
     {
         return target;
     }
+
 }

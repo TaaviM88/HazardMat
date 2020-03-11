@@ -13,8 +13,9 @@ public class EnemyAI : MonoBehaviour
     Animator anime;
     //private Shooting shoot;
 
-    
+    [Header("Parameters")]
     //public float randomMovementRangeX = 10f, randomMovementRangeY = 70f;
+    public EnemyType etype;
     public float targetRange = 9;
     public float attackRange = 3;
     public bool attacking = false;
@@ -39,7 +40,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   protected virtual void Update()
     {
         if(!isAlive)
         {
@@ -49,6 +50,9 @@ public class EnemyAI : MonoBehaviour
         switch (state)
         {
             default:
+            case EnemyAIState.flyforward:
+                    
+                break;
             case EnemyAIState.Roaming:
                 //pathfind.MoveToTimer(roamPosition);
                 if(IsInSpawn())
@@ -67,6 +71,7 @@ public class EnemyAI : MonoBehaviour
 
                 break;
             case EnemyAIState.Idle:
+
                 if(!FindTarget())
                 {
                     GotoSpawn();
@@ -88,9 +93,11 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    SetState(EnemyAIState.Idle);
+                     SetState(EnemyAIState.Idle);
                 }
+
                 break;
+
             case EnemyAIState.Attacking:
                 //Attacking
                 if(Vector3.Distance(transform.position, PlayerManager.Instance.transform.position) < attackRange && eAttack.GetCanAttack() && !attacking)
@@ -103,8 +110,15 @@ public class EnemyAI : MonoBehaviour
                     SetState(EnemyAIState.Idle);
                 }
                 break;
+                    
             case EnemyAIState.Spawning:
                 //Spawn Animation
+                break;
+            case EnemyAIState.TakingDamage:
+
+                break;
+            case EnemyAIState.Dying:
+
                 break;
         }
 
