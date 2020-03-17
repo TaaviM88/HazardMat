@@ -22,4 +22,9 @@ public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+ 
+    }
 }
