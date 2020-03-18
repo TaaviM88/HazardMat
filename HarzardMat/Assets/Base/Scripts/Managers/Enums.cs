@@ -21,7 +21,16 @@ public enum EnemyAIState
     TakingDamage,
     Dying,
 }
+
+public enum EnemySpawnerType
+{
+    Once,
+    Wave,
+    Boss,
+    Infinite,
+}
 #endregion
+
 
 public enum PlayerAttackState
 {

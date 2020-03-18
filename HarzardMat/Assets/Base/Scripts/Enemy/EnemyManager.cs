@@ -6,7 +6,13 @@ public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie
 {
     public float health = 2;
     public int side = 1;
+    EnemySpawner mySpawner;
     //public float timeToLive = 10f;
+
+    private void Start()
+    {
+
+    }
 
     public void Damage(float damage)
     {
@@ -23,8 +29,22 @@ public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void FlipEnemy()
     {
- 
+        side *= -1;
+        transform.localScale = new Vector3(side, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void GiveMySpawner(EnemySpawner spawner)
+    {
+        mySpawner = spawner;
+    }
+
+    private void OnDestroy()
+    {
+        if(mySpawner != null)
+        {
+            mySpawner.gameObject.SetActive(true);
+        }
     }
 }

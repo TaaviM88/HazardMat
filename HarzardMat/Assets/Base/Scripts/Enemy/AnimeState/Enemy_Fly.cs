@@ -25,7 +25,7 @@ public class Enemy_Fly : StateMachineBehaviour
     {
          if(AI.GetState() ==EnemyAIState.flyforward)
          {
-            rb2d.velocity = (emanager.side * Vector2.right * speed);
+            rb2d.velocity = (-1*emanager.side * Vector2.right * speed);
          }
     }
 
