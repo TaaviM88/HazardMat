@@ -486,7 +486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321846455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000023841858, y: 1.3824443, z: -10}
+  m_LocalPosition: {x: 0.00000047683716, y: 1.3824443, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 559895603}
@@ -762,10 +762,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnType: 1
   spawnEnemies:
-  - {fileID: 331666142, guid: 5f4ced1c7fc046544822923f899c44d2, type: 3}
-  spawnRate: 2
-  nextSpawn: 1
-  howManyEnemiesSpawns: 10
+  - {fileID: 7734747882590084895, guid: d45ec017b26fee140a78231da3744eaf, type: 3}
+  spawnRate: 1
+  nextSpawn: 0
+  howManyEnemiesSpawns: 2
   activationRange: 25
   cooldownTime: 10
   sensor: {fileID: 1060492412}
@@ -777,7 +777,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633621768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.43, y: -0.88, z: 0}
+  m_LocalPosition: {x: 30.43, y: -1.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1060492412}
@@ -2719,7 +2719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860209800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000023841858, y: 1.3824443, z: -10}
+  m_LocalPosition: {x: 0.00000047683716, y: 1.3824443, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
