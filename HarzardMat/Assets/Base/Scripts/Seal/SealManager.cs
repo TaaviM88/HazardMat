@@ -50,12 +50,6 @@ public class SealManager : MonoBehaviour
         {
             //movement
             case SealSkillState.crawl:
-                /*if(!sealMovement.enabled)
-                {
-                    EnableScript(sealMovement.ToString());
-                    sealMovement.canMove = canMove;
-                    //sealMovement.enabled = true;
-                }*/
                 EnableScript(sealMovement.ToString());
                 
                 break;
@@ -87,12 +81,6 @@ public class SealManager : MonoBehaviour
                 break;
 
             case SealSkillState.jump:
-                /*if (!jumpScript.enabled)
-                {
-                    EnableScript(jumpScript.ToString());
-                    //jumpScript.enabled = true;
-                }
-                */
                 EnableScript(jumpScript.ToString());
                 break;
 

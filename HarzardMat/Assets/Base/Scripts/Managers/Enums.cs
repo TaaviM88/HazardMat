@@ -37,6 +37,13 @@ public enum PlayerAttackState
     None, 
     WeaponThrow, 
     SummonFamiliar,
+    GrapplingHook,
+}
+
+public enum GrapplinState
+{
+    None,
+    Grappling,
 }
 
 public enum SealSkillState

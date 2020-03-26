@@ -14,11 +14,13 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     PlayerAnimationScript animeScript;
     Throw throwScript;
     Summon summon;
+    GrapplingHook grapplingHook;
 
     [Header("References")]
     public GameObject seal;
     public GameObject sealBagPosition;
     public GameObject spawnPoint;
+    public List<MonoBehaviour> scripts = new List<MonoBehaviour>();
 
     [Space]
     [Header("Parametres")]
@@ -53,8 +55,15 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         move = GetComponent<PlayerMovement>();
         animeScript = GetComponent<PlayerAnimationScript>();
         summon = GetComponent<Summon>();
+        grapplingHook = GetComponent<GrapplingHook>();
         SetCameraToFollowPlayer();
         maxHealth = health;
+
+        scripts.Add(throwScript);
+        scripts.Add(summon);
+        scripts.Add(grapplingHook);
+
+
     }
 
     // Update is called once per frame
@@ -77,45 +86,27 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         {
 
             case PlayerAttackState.WeaponThrow:
-                if(!throwScript.enabled)
-                {
-                    throwScript.EnableScript();
-                    throwScript.enabled = true;
-                }
-                if(summon.enabled)
-                {
-                    summon.enabled = false;
-                }
 
+                if(!throwScript.enabled)
+                    EnableScripts(throwScript.ToString());
                 break;
 
             case PlayerAttackState.SummonFamiliar:
-                if(throwScript.enabled)
-                {
-                    throwScript.DisableScript();
-                    throwScript.enabled = false;
-                    if(!summon.enabled)
-                    {
-                        summon.enabled = true;
-                    }
-                }
-                
+                if (!summon.enabled)
+                    EnableScripts(summon.ToString());       
             break;
 
+            case PlayerAttackState.GrapplingHook:
+                if(!grapplingHook.enabled)
+                EnableScripts(grapplingHook.ToString());
+                break;
+
             case PlayerAttackState.None:
-                if (throwScript.enabled)
-                {
-                    throwScript.DisableScript();
-                    throwScript.enabled = false;
-                }
-
-                if (summon.enabled)
-                {
-                    summon.enabled = false;
-                }
-
+                EnableScripts("");
+                
                 break;
         }
+
         side = move.side;
 
         sealBagPosition.transform.localScale = new Vector3(side, sealBagPosition.transform.localScale.y, sealBagPosition.transform.localScale.z);
@@ -134,6 +125,21 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         else
         {
             attackMode = 0;
+        }
+    }
+
+    private void EnableScripts(string scriptName)
+    {
+        foreach (MonoBehaviour script in scripts)
+        {
+            if(script.ToString() == scriptName)
+            {
+                script.enabled = true;
+            }
+            else
+            {
+                script.enabled = false;
+            }
         }
     }
 
