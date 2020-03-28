@@ -11,6 +11,7 @@ public class SealJump : MonoBehaviour
     public float moveSpeed = 7;
     //private bool jumping = false;
     private bool groundTouch;
+    float originalScaleX;
     //private int side = 1;
     private Vector2 moveDir;
     // Start is called before the first frame update
@@ -18,7 +19,8 @@ public class SealJump : MonoBehaviour
     {
         coll = GetComponent<Collision>();
         _rb2D = GetComponent<Rigidbody2D>();
-
+        //originalScaleX = PlayerManager.Instance.side;
+        originalScaleX  = transform.localScale.x; 
     }
 
     // Update is called once per frame
@@ -28,8 +30,6 @@ public class SealJump : MonoBehaviour
         float VerticalY = Input.GetAxis("Vertical");
         moveDir = new Vector2(horizontalX, VerticalY);
 
-      
-
         //Jump();
     }
 
@@ -38,12 +38,26 @@ public class SealJump : MonoBehaviour
         if (!coll.onGround)
         {
             //jumping = false;
-            _rb2D.velocity = new Vector2(moveDir.x * moveSpeed, _rb2D.velocity.y);
+            //_rb2D.velocity = new Vector2(moveDir.x * moveSpeed, _rb2D.velocity.y);
             return;
         }
         else
         {
             _rb2D.velocity = new Vector2(moveDir.x * moveSpeed * 1.50f, jumpForce);
+        }
+
+        float rawHorizontal = Input.GetAxisRaw("Horizontal");
+        if (rawHorizontal != 0)
+        {
+            if(PlayerManager.Instance.side > 0)
+            {
+                transform.localScale = new Vector3((int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1*(int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            }
+
         }
     }
 
@@ -71,5 +85,10 @@ public class SealJump : MonoBehaviour
         {
             groundTouch = false;
         }
+    }
+
+    public void UpdateOriginalScaleX(int side)
+    {
+        originalScaleX = side;
     }
 }

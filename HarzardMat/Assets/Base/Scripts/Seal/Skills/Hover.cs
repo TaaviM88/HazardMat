@@ -14,19 +14,23 @@ public class Hover : MonoBehaviour
     public float maxDistance = 2f;
     public float distance = 1f;
     public float maxForce = 4;
+    public float frequency = 1f;
+    public float magnitude = 25f;
     public LayerMask groundLayer;
     float moveHorizontal;
     float originalScaleX;
     Rigidbody2D _rb2D;
     private Vector3 forceVector;
-
+    private Vector3 axis;
+    private Vector3 pos;
     // Start is called before the first frame update
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         originalScaleX = transform.localScale.x;
-
+        pos = _rb2D.transform.right;
+        axis = _rb2D.transform.up;
     }
 
     private void Update()
@@ -35,15 +39,18 @@ public class Hover : MonoBehaviour
         float rawHorizontal = Input.GetAxisRaw("Horizontal");
         if (rawHorizontal != 0)
         {
-            transform.localScale = new Vector3((int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            if (PlayerManager.Instance.side > 0)
+                transform.localScale = new Vector3((int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            else
+                transform.localScale = new Vector3(-1*(int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
         }
-
-
-
     }
 
     private void FixedUpdate()
     {
+        _rb2D.velocity = new Vector2(moveHorizontal * moveSpeed * pos.x, axis.y * Mathf.Sin(Time.time * frequency) * Time.deltaTime * magnitude);
+
+        /* Toimiva versio
         _rb2D.velocity = new Vector2(moveHorizontal * moveSpeed, _rb2D.velocity.y);
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
@@ -62,21 +69,28 @@ public class Hover : MonoBehaviour
             
         Debug.DrawRay(position, direction, Color.green);
         hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-
+        */
     }
-        /* RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, maxDistance); 
 
-          if(hit.collider != null && hit.collider.gameObject.layer == groundLayer)
+    /* RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, maxDistance); 
+
+      if(hit.collider != null && hit.collider.gameObject.layer == groundLayer)
+      {
+          if (hit.distance < maxDistance)
           {
-              if (hit.distance < maxDistance)
-              {
-                  forceVector = Vector2.up * ((maxDistance - hit.distance) / maxDistance) * maxForce;
+              forceVector = Vector2.up * ((maxDistance - hit.distance) / maxDistance) * maxForce;
 
-                  _rb2D.AddForce(forceVector);
-              }
+              _rb2D.AddForce(forceVector);
           }
+      }
 
-          Debug.DrawLine(transform.position, hit.point);*/
+      Debug.DrawLine(transform.position, hit.point);*/
 
- }
+    public void UpdateOriginalScaleX(int side)
+    {
+        originalScaleX = side;
+        if(_rb2D != null)
+        pos = _rb2D.transform.right;
+    }
+}
 

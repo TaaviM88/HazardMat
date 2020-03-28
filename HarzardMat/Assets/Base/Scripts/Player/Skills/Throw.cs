@@ -92,10 +92,14 @@ public class Throw : MonoBehaviour
                 break;
         }
 
+
+
         HasWeapon();
         PullWeapon();
         Aim();
         WaitWallGrab();
+
+        weapon.gameObject.GetComponent<SpriteRenderer>().sortingOrder = PlayerManager.Instance.side;
     }
 
     private void HasWeapon()
@@ -247,7 +251,6 @@ public class Throw : MonoBehaviour
         material.DOFloat(1, "_DissolveAmount", warpDuration);
         PlayerManager.Instance.DissolveSeal(warpDuration);
         transform.DOMove(weapon.position, warpDuration).SetEase(Ease.InExpo).OnComplete(() => FinishWarp());
-        //Rigidbody2D rb = ;
         move.GetRigidbody().isKinematic= true;
         move.ReleaseWallGrab();
     }
@@ -329,5 +332,22 @@ public class Throw : MonoBehaviour
     private void ChangeState(State newState)
     {
         state = newState;
+    }
+
+    private void OnEnable()
+    {
+        if(!weapon.gameObject.activeInHierarchy)
+        {
+            weapon.gameObject.SetActive(true);
+            
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (weapon.gameObject.activeInHierarchy)
+        {
+            weapon.gameObject.SetActive(false);
+        }
     }
 }

@@ -18,14 +18,17 @@ public class Summon : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             InstantiateSummon();
+            //PlayerManager.Instance.canChangeAttackMode = false;
         }
     }
 
     public void InstantiateSummon()
     {
         GameObject clone = Instantiate(SummonPrefab, summonPoint.position, Quaternion.identity);
+        //clone.transform.localScale = new Vector3( PlayerManager.Instance.side * clone.transform.localScale.x, clone.transform.localScale.y, clone.transform.localScale.z);
         //clone.transform.localScale = new Vector3 (PlayerManager.Instance.side,  clone.transform.localScale.y, clone.transform.localScale.z);
         clone.GetComponent<SealMovement>().UpdateOriginalScaleX(PlayerManager.Instance.side);
         PlayerManager.Instance.Summoning();
     }
+
 }

@@ -69,7 +69,7 @@ public class SealManager : MonoBehaviour
             case SealSkillState.hover:
                 //X-akseli
                 EnableScript(hoverScript.ToString());
-
+                hoverScript.UpdateOriginalScaleX(PlayerManager.Instance.side);
                 break;
 
             case SealSkillState.FloatingVertical:
@@ -82,11 +82,21 @@ public class SealManager : MonoBehaviour
 
             case SealSkillState.jump:
                 EnableScript(jumpScript.ToString());
+                jumpScript.UpdateOriginalScaleX(PlayerManager.Instance.side);
                 break;
 
             case SealSkillState.oil:
 
                 break;
+        }
+
+        if(skillMode == SealSkillState.hover)
+        {
+            _rb2D.gravityScale = 0;
+        }
+        else
+        {
+            _rb2D.gravityScale = 1;
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -121,7 +131,8 @@ public class SealManager : MonoBehaviour
             skillMode = 0;
         }
 
-        Debug.Log(skillMode);
+        GameEvents.current.UpdateBattleLog("Seal mode is: " + skillMode.ToString());
+        //Debug.Log(skillMode);
     }
 
     private void EnableScript(string scriptName)

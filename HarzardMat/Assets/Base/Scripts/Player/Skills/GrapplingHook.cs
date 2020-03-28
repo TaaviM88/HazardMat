@@ -8,7 +8,7 @@ public class GrapplingHook : MonoBehaviour
     public LineRenderer lr;
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
-    private float maxDistance = 20f;
+    public float maxDistance = 20f, jointDistancePercentage = 0.5f, jointDampingRatio = 0.5f, jointFrequency = 0.5f;
     private SpringJoint2D joint2D;
 
     private Vector3 currentGrapplePosition;
@@ -17,6 +17,7 @@ public class GrapplingHook : MonoBehaviour
     void Start()
     {
         move = GetComponent<PlayerMovement>();
+        lr.enabled = false;
     }
 
     // Update is called once per frame
@@ -24,11 +25,18 @@ public class GrapplingHook : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
+            PlayerManager.Instance.canChangeAttackMode = false;
+            if(!lr.enabled)
+            {
+                lr.enabled = true;
+            }
             StartGrapple();
         }
-        else if(Input.GetButtonUp("Fire1"))
+
+        if(Input.GetButtonUp("Fire1"))
         {
             StopGrapple();
+            PlayerManager.Instance.canChangeAttackMode = true;
         }
     }
 
@@ -42,20 +50,26 @@ public class GrapplingHook : MonoBehaviour
         Vector2 castDir = new Vector2 (move.GetHorizontalInput().x,1);
         //RaycastHit2D hit2D = Physics2D.Raycast(transform.position, castDir, maxDistance, whatIsGrappleable);
         RaycastHit2D hit2D = Physics2D.Raycast(transform.position, castDir, maxDistance);
-        Debug.Log(hit2D.collider.name + hit2D.collider.gameObject.layer);
+        //Debug.Log(hit2D.collider.name + hit2D.collider.gameObject.layer);
         if (hit2D.collider.gameObject.layer == 8)
         {
-            Debug.Log(hit2D.collider.name + "fuck yes");
+
             grapplePoint = hit2D.point;
-            joint2D = gameObject.AddComponent<SpringJoint2D>();
+            if(joint2D == null)
+            {
+              joint2D = gameObject.AddComponent<SpringJoint2D>();
+            }
             joint2D.autoConfigureConnectedAnchor = false;
             joint2D.connectedAnchor = grapplePoint;
 
             float distanceFromPoint = Vector3.Distance(transform.position, grapplePoint);
-            joint2D.distance = distanceFromPoint * 0.5f;
-            joint2D.dampingRatio = 0.1f;
-            joint2D.frequency = 1f;
+            joint2D.enableCollision = true;
+            joint2D.distance = distanceFromPoint * jointDistancePercentage;
+            joint2D.dampingRatio = jointDampingRatio;
+            joint2D.frequency = jointFrequency;
+           // joint2D.breakForce = 500;
             lr.positionCount = 2;
+            //joint2D.connectedBody = gameObject.GetComponent<Rigidbody2D>();
             currentGrapplePosition = lr.gameObject.transform.position;    
         }
 
@@ -65,6 +79,7 @@ public class GrapplingHook : MonoBehaviour
     {
         lr.positionCount = 0;
         Destroy(joint2D);
+
     }
 
     void DrawRope()
@@ -83,5 +98,11 @@ public class GrapplingHook : MonoBehaviour
     public Vector3 GetGrapplePoint()
     {
         return grapplePoint;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, maxDistance);
     }
 }

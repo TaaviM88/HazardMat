@@ -283,4 +283,9 @@ public class PlayerMovement : MonoBehaviour
     {
         cloneGhost.enabled = false;
     }
+
+    public void AddForce(Vector2 force)
+    {
+        _rb2D.AddForce(force);
+    }
 }

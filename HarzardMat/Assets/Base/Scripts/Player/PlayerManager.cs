@@ -126,6 +126,8 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         {
             attackMode = 0;
         }
+
+        GameEvents.current.UpdateBattleLog("Player mode is: " + attackMode.ToString());
     }
 
     private void EnableScripts(string scriptName)
@@ -145,11 +147,12 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
     public void Summoning()
     {
+        canChangeAttackMode = false;
         SetSummoning(true);
         //move.enabled = false;
         FreezePlayerMovement();
         move.enabled = false;
-        throwScript.enabled = false;
+        //throwScript.enabled = false;
         summon.enabled = false;
         summoned = true;
         sealBagPosition.gameObject.SetActive(false);
@@ -164,6 +167,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         SetCameraToFollowPlayer();
         sealBagPosition.gameObject.SetActive(true);
         StartPlayerMovement();
+        canChangeAttackMode = true;
     }
 
     public void SetSummoning(bool newbool)
@@ -254,5 +258,10 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         move.StartPlayerMovement();
         move.ToggleCanMove(true);
+    }
+
+    public void AddForce(Vector2 force)
+    {
+        move.AddForce(force);
     }
 }
