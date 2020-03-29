@@ -8,43 +8,51 @@ public class Magnetic : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public Color activatedColor;
     Color originalColor;
-    bool inside;
+    //bool inside;
     public float radius = 5f;
     public float force = 1f;
-
+    public MagneticType magneticType;
+    MagneticState magneticState;
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
-        inside = false;
+        //inside = false;
+        magneticState = MagneticState.Inactive;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
 
-        if (inside)
+        if (magneticState == MagneticState.Activate)
         {
             Vector3 magnetField = transform.position - PlayerManager.Instance.gameObject.transform.position;
             float index = (radius - magnetField.magnitude / radius);
-            PlayerManager.Instance.AddForce(-force * magnetField * index);
+            if (magneticType == MagneticType.Push)
+            {
+                PlayerManager.Instance.AddForce(-force * magnetField * index);
+            }
+            else
+            {
+                PlayerManager.Instance.AddForce(force * magnetField * index);
+            }
         }
 
         PlayerOnRage();
-
-        Debug.Log(inside);
+        //Debug.Log(inside);
     }
 
     public void PlayerOnRage()
     {
         if (Vector3.Distance(transform.position,  PlayerManager.Instance.gameObject.transform.position) < radius)
         {
-            inside = true;
+            magneticState = MagneticState.Activate;
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, activatedColor, 5 * Time.deltaTime);
         }
         else
         {
-            inside = false;
+            magneticState = MagneticState.Inactive;
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, originalColor, 5 * Time.deltaTime);
         }
     }

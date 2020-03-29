@@ -45,6 +45,17 @@ public enum GrapplinState
     None,
     Grappling,
 }
+public enum MagneticType
+{
+    Pull,
+    Push,
+}
+
+public enum MagneticState
+{
+    Activate,
+    Inactive,
+}
 
 public enum SealSkillState
 {

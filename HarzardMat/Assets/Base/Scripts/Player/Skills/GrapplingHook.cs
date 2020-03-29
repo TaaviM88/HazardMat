@@ -9,7 +9,10 @@ public class GrapplingHook : MonoBehaviour
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
     public float maxDistance = 20f, jointDistancePercentage = 0.5f, jointDampingRatio = 0.5f, jointFrequency = 0.5f;
-    private SpringJoint2D joint2D;
+
+    //private SpringJoint2D joint2D;
+
+    private DistanceJoint2D joint2D;
 
     private Vector3 currentGrapplePosition;
     PlayerMovement move;
@@ -47,17 +50,23 @@ public class GrapplingHook : MonoBehaviour
 
     private void StartGrapple()
     {
-        Vector2 castDir = new Vector2 (move.GetHorizontalInput().x,1);
+        Vector2 castDir = new Vector2 (move.GetHorizontalInput().x, move.GetHorizontalInput().y);
         //RaycastHit2D hit2D = Physics2D.Raycast(transform.position, castDir, maxDistance, whatIsGrappleable);
+        if(castDir.y <=0)
+        {
+            return;
+        }
         RaycastHit2D hit2D = Physics2D.Raycast(transform.position, castDir, maxDistance);
         //Debug.Log(hit2D.collider.name + hit2D.collider.gameObject.layer);
+        if(hit2D.collider != null)
         if (hit2D.collider.gameObject.layer == 8)
         {
 
             grapplePoint = hit2D.point;
             if(joint2D == null)
             {
-              joint2D = gameObject.AddComponent<SpringJoint2D>();
+                //joint2D = gameObject.AddComponent<SpringJoint2D>();
+                joint2D = gameObject.AddComponent<DistanceJoint2D>();
             }
             joint2D.autoConfigureConnectedAnchor = false;
             joint2D.connectedAnchor = grapplePoint;
@@ -65,8 +74,14 @@ public class GrapplingHook : MonoBehaviour
             float distanceFromPoint = Vector3.Distance(transform.position, grapplePoint);
             joint2D.enableCollision = true;
             joint2D.distance = distanceFromPoint * jointDistancePercentage;
-            joint2D.dampingRatio = jointDampingRatio;
-            joint2D.frequency = jointFrequency;
+            
+            //distance joint
+            //joint2D.maxDistanceOnly = true;
+
+            //spring joint
+            //joint2D.dampingRatio = jointDampingRatio;
+            //joint2D.frequency = jointFrequency;
+
            // joint2D.breakForce = 500;
             lr.positionCount = 2;
             //joint2D.connectedBody = gameObject.GetComponent<Rigidbody2D>();
