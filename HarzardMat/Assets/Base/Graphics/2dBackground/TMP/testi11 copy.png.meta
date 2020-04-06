@@ -23,6 +23,27 @@ TextureImporter:
   - first:
       213: -3472301390463338464
     second: testi11 copy_6
+  - first:
+      213: 1704972895468557522
+    second: testi11 copy_0
+  - first:
+      213: -2180247973627652825
+    second: testi11 copy_1
+  - first:
+      213: -388536185665928217
+    second: testi11 copy_2
+  - first:
+      213: 8748982734536617728
+    second: testi11 copy_3
+  - first:
+      213: -460296478170714761
+    second: testi11 copy_4
+  - first:
+      213: -8281375302042221187
+    second: testi11 copy_5
+  - first:
+      213: 4110186890311623046
+    second: testi11 copy_6
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -66,7 +87,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,6 +124,18 @@ TextureImporter:
     overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -112,8 +145,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b499c63c20d56b00800000000000000
-      internalID: 821291395381302452
+      spriteID: 2d4921aa0d749a710800000000000000
+      internalID: 1704972895468557522
       vertices: []
       indices: 
       edges: []
@@ -131,10 +164,10 @@ TextureImporter:
       name: testi11 copy_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62007fa277e9e2080800000000000000
-      internalID: -9210249953266958298
+      spriteID: 72598a9f4043eb1e0800000000000000
+      internalID: -2180247973627652825
       vertices: []
       indices: 
       edges: []
@@ -152,10 +185,10 @@ TextureImporter:
       name: testi11 copy_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 512
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f29ce23967bb37a90800000000000000
-      internalID: -7317298851597072081
+      spriteID: 7e34ffec564ab9af0800000000000000
+      internalID: -388536185665928217
       vertices: []
       indices: 
       edges: []
@@ -173,10 +206,10 @@ TextureImporter:
       name: testi11 copy_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 768
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62ad26af9b2903f40800000000000000
-      internalID: 5706222055345805862
+      spriteID: 00fa4166171aa6970800000000000000
+      internalID: 8748982734536617728
       vertices: []
       indices: 
       edges: []
@@ -194,10 +227,10 @@ TextureImporter:
       name: testi11 copy_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1024
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,8 +238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abcf71731baa73be0800000000000000
-      internalID: -1497540672967148358
+      spriteID: 77d6547bac2bc99f0800000000000000
+      internalID: -460296478170714761
       vertices: []
       indices: 
       edges: []
@@ -215,10 +248,10 @@ TextureImporter:
       name: testi11 copy_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 1280
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,8 +259,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b35cdee6ce4613f70800000000000000
-      internalID: 9165217683311805755
+      spriteID: d7584161a05a21d80800000000000000
+      internalID: -8281375302042221187
       vertices: []
       indices: 
       edges: []
@@ -236,10 +269,10 @@ TextureImporter:
       name: testi11 copy_6
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1536
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,8 +280,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 028765c4848efcfc0800000000000000
-      internalID: -3472301390463338464
+      spriteID: 681ed7533315a0930800000000000000
+      internalID: 4110186890311623046
       vertices: []
       indices: 
       edges: []
