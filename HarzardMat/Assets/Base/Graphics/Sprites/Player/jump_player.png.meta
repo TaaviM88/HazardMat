@@ -1,49 +1,28 @@
 fileFormatVersion: 2
-guid: 82a94a40ff2a48c42b0513218606700d
+guid: eeaef1014cb440243b38e315f701546b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 821291395381302452
-    second: testi11 copy_0
+      213: -9077340003434266089
+    second: jump_start1
   - first:
-      213: -9210249953266958298
-    second: testi11 copy_1
+      213: -748117572050803117
+    second: jump_start2
   - first:
-      213: -7317298851597072081
-    second: testi11 copy_2
+      213: 5510715400793978405
+    second: jump_start3
   - first:
-      213: 5706222055345805862
-    second: testi11 copy_3
+      213: 4022789466990037721
+    second: jump
   - first:
-      213: -1497540672967148358
-    second: testi11 copy_4
+      213: -8815555499735919385
+    second: jump_landing1
   - first:
-      213: 9165217683311805755
-    second: testi11 copy_5
+      213: 9038171120810098135
+    second: jump_landing2
   - first:
-      213: -3472301390463338464
-    second: testi11 copy_6
-  - first:
-      213: 1704972895468557522
-    second: testi11 copy_0
-  - first:
-      213: -2180247973627652825
-    second: testi11 copy_1
-  - first:
-      213: -388536185665928217
-    second: testi11 copy_2
-  - first:
-      213: 8748982734536617728
-    second: testi11 copy_3
-  - first:
-      213: -460296478170714761
-    second: testi11 copy_4
-  - first:
-      213: -8281375302042221187
-    second: testi11 copy_5
-  - first:
-      213: 4110186890311623046
-    second: testi11 copy_6
+      213: -214403970669003409
+    second: jump_landing3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -76,9 +55,9 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -104,7 +83,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -121,14 +100,14 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -140,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: testi11 copy_0
+      name: jump_start1
       rect:
         serializedVersion: 2
         x: 0
@@ -148,20 +127,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d4921aa0d749a710800000000000000
-      internalID: 1704972895468557522
+      spriteID: 7128bd55c5fc60280800000000000000
+      internalID: -9077340003434266089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: testi11 copy_1
+      name: jump_start2
       rect:
         serializedVersion: 2
         x: 256
@@ -169,20 +148,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72598a9f4043eb1e0800000000000000
-      internalID: -2180247973627652825
+      spriteID: 3562fab28072e95f0800000000000000
+      internalID: -748117572050803117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: testi11 copy_2
+      name: jump_start3
       rect:
         serializedVersion: 2
         x: 512
@@ -190,20 +169,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e34ffec564ab9af0800000000000000
-      internalID: -388536185665928217
+      spriteID: 5267992c57ef97c40800000000000000
+      internalID: 5510715400793978405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: testi11 copy_3
+      name: jump
       rect:
         serializedVersion: 2
         x: 768
@@ -211,20 +190,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00fa4166171aa6970800000000000000
-      internalID: 8748982734536617728
+      spriteID: 9dacf12e4b1d3d730800000000000000
+      internalID: 4022789466990037721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: testi11 copy_4
+      name: jump_landing1
       rect:
         serializedVersion: 2
         x: 1024
@@ -232,20 +211,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d6547bac2bc99f0800000000000000
-      internalID: -460296478170714761
+      spriteID: 7e4df74dafad8a580800000000000000
+      internalID: -8815555499735919385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: testi11 copy_5
+      name: jump_landing2
       rect:
         serializedVersion: 2
         x: 1280
@@ -253,20 +232,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7584161a05a21d80800000000000000
-      internalID: -8281375302042221187
+      spriteID: 7dd74138fb80e6d70800000000000000
+      internalID: 9038171120810098135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: testi11 copy_6
+      name: jump_landing3
       rect:
         serializedVersion: 2
         x: 1536
@@ -274,14 +253,14 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 681ed7533315a0930800000000000000
-      internalID: 4110186890311623046
+      spriteID: f6d37d189b8460df0800000000000000
+      internalID: -214403970669003409
       vertices: []
       indices: 
       edges: []
@@ -295,9 +274,7 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: b2d795b435dc2324c955e08d1cec1670, type: 3}
-      name: _NormalMap
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
