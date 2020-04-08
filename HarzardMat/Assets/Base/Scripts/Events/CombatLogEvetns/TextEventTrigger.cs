@@ -5,6 +5,7 @@ using UnityEngine;
 public class TextEventTrigger : MonoBehaviour
 {
     // public int id;
+    [TextArea]
     public string text;
     public bool triggersOnce = false;
     public float cooldownTime = 5f;

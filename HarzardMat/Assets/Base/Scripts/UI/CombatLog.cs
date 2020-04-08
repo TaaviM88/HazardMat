@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 public class CombatLog : MonoBehaviour
 {
     [SerializeField] TMP_Text combatlog;
@@ -13,6 +14,7 @@ public class CombatLog : MonoBehaviour
     void Start()
     {
         GameEvents.current.updateBattleLog += Log;
+
        /* if (Instance != null)
         {
             Destroy(gameObject);
@@ -62,6 +64,5 @@ public class CombatLog : MonoBehaviour
         {
             istyping = false;
         }
-        
-	}
+    }
 }

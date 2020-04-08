@@ -8,6 +8,7 @@ public class GrapplingHook : MonoBehaviour
     public LineRenderer lr;
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
+    public float newGravityScale = 20f;
     public float maxDistance = 20f, jointDistancePercentage = 0.5f, jointDampingRatio = 0.5f, jointFrequency = 0.5f;
 
     //private SpringJoint2D joint2D;
@@ -16,10 +17,14 @@ public class GrapplingHook : MonoBehaviour
 
     private Vector3 currentGrapplePosition;
     PlayerMovement move;
+    Rigidbody2D rb2d;
+    private float orginalGravityScale;
     // Start is called before the first frame update
     void Start()
     {
         move = GetComponent<PlayerMovement>();
+        rb2d = GetComponent<Rigidbody2D>();
+        orginalGravityScale = rb2d.gravityScale;
         lr.enabled = false;
     }
 
@@ -50,7 +55,7 @@ public class GrapplingHook : MonoBehaviour
 
     private void StartGrapple()
     {
-        Vector2 castDir = new Vector2 (move.GetHorizontalInput().x, move.GetHorizontalInput().y);
+        Vector2 castDir = new Vector2 (move.GetHorizontalInput().x, 1);
         //RaycastHit2D hit2D = Physics2D.Raycast(transform.position, castDir, maxDistance, whatIsGrappleable);
         if(castDir.y <=0)
         {
@@ -84,8 +89,9 @@ public class GrapplingHook : MonoBehaviour
 
            // joint2D.breakForce = 500;
             lr.positionCount = 2;
-            //joint2D.connectedBody = gameObject.GetComponent<Rigidbody2D>();
-            currentGrapplePosition = lr.gameObject.transform.position;    
+
+            currentGrapplePosition = lr.gameObject.transform.position;
+                rb2d.gravityScale = newGravityScale;
         }
 
     }
@@ -94,7 +100,7 @@ public class GrapplingHook : MonoBehaviour
     {
         lr.positionCount = 0;
         Destroy(joint2D);
-
+        rb2d.gravityScale = orginalGravityScale;
     }
 
     void DrawRope()
