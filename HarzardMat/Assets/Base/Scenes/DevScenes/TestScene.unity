@@ -914,7 +914,7 @@ GameObject:
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &633621769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2853,72 +2853,6 @@ PrefabInstance:
     - target: {fileID: 8916722276354822228, guid: 7722a3ed2655d014b859e6edfc60eb2d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822229, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -9093284147415517798, guid: 4d56f564a3108684eb08e8a9218fc891,
-        type: 3}
-    - target: {fileID: 8916722276354822230, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.036560893
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822230, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.4783223
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822230, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.2512522
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822230, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.51854575
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: bottomOffset.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: bottomOffset.y
-      value: -1.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: ceilingOffset.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: ceilingOffset.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: rightOffset.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: rightOffset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: leftOffset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916722276354822251, guid: 7722a3ed2655d014b859e6edfc60eb2d,
-        type: 3}
-      propertyPath: leftOffset.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
