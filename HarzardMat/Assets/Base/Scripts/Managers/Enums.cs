@@ -40,6 +40,12 @@ public enum PlayerAttackState
     GrapplingHook,
 }
 
+public enum PlayerLookDir
+{
+    Right,
+    Left,
+}
+
 public enum GrapplinState
 {
     None,

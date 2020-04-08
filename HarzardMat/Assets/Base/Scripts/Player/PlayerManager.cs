@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     Throw throwScript;
     Summon summon;
     GrapplingHook grapplingHook;
-
+    Collision coll;
     [Header("References")]
     public GameObject seal;
     public GameObject sealBagPosition;
@@ -56,6 +56,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         animeScript = GetComponent<PlayerAnimationScript>();
         summon = GetComponent<Summon>();
         grapplingHook = GetComponent<GrapplingHook>();
+        coll = GetComponent<Collision>();
         SetCameraToFollowPlayer();
         maxHealth = health;
 
@@ -110,6 +111,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         side = move.side;
 
         sealBagPosition.transform.localScale = new Vector3(side, sealBagPosition.transform.localScale.y, sealBagPosition.transform.localScale.z);
+        coll.LookSide(side);
         //Debug.Log($"current attackMode {attackMode} and attackmode current int {(int)attackMode}. Length of enums{System.Enum.GetValues(typeof(AttackModeEnum.AttackMode)).Length}");
         //UIManager.Instance.UpdateCombatLog($"current attackMode {attackMode}");
     }

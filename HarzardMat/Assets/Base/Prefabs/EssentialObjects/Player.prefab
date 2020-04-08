@@ -743,7 +743,8 @@ SpriteRenderer:
   m_SortingLayerID: -1838337327
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e03add0699c1cc44b860fd2295b31690, type: 3}
+  m_Sprite: {fileID: -9093284147415517798, guid: 4d56f564a3108684eb08e8a9218fc891,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -786,8 +787,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13332522}
-  m_Size: {x: 0.5776638, y: 1.7333496}
+  m_Offset: {x: 0.2512522, y: -0.036560893}
+  m_Size: {x: 0.51854575, y: 2.4783223}
   m_Direction: 0
 --- !u!50 &8916722276354822231
 Rigidbody2D:
@@ -844,7 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghost: {fileID: 1814767496850655605, guid: 76372cbce58c2454ea663d3d655e3f9c, type: 3}
   speed: 7
-  jumpForce: 5
+  jumpForce: 8
   slideSpeed: 3
   gravityScaleNumber: 3
   knockbackForceX: 15
@@ -875,10 +876,10 @@ MonoBehaviour:
   onCeiling: 0
   wallSide: 0
   collisionRadius: 0.1
-  bottomOffset: {x: 0, y: -0.98}
-  ceilingOffset: {x: 0, y: 0.74}
-  rightOffset: {x: 0.39, y: -0.25}
-  leftOffset: {x: -0.39, y: -0.25}
+  bottomOffset: {x: 0.25, y: -1.26}
+  ceilingOffset: {x: 0.25, y: 1.2}
+  rightOffset: {x: 0.5, y: 0}
+  leftOffset: {x: 0, y: 0}
 --- !u!114 &8916722276354822248
 MonoBehaviour:
   m_ObjectHideFlags: 0

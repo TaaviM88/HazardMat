@@ -35,7 +35,7 @@ public class PlayerAnimationScript : MonoBehaviour
 
         anim.SetBool("isAiming", _throw.GetIsAming());
         anim.SetBool("canMove", move.GetCanMove());
-
+        anim.SetBool("OnGround", coll.onGround);
     }
 
     public void SetHorizontalMovement(float x, float y, float yVel)
@@ -47,7 +47,15 @@ public class PlayerAnimationScript : MonoBehaviour
         //anim.SetFloat("AttackButtonNegative", -y);
     }
 
+    public void SetBool(string name, bool b)
+    {
+        anim.SetBool(name, b);
+    }
 
+    public void SetTrigger(string trigger)
+    {
+        anim.SetTrigger(trigger);
+    }
 
     public void Flip(int side)
     {

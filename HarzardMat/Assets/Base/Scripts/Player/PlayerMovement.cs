@@ -151,7 +151,6 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
-
     private void Jump(bool attackJump)
     {
         if (!coll.onGround || !GetCanMove())
@@ -170,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                anime.SetTrigger("Jump");  
                 _rb2D.velocity = new Vector2(moveDir.x * speed * 1.50f, jumpForce);
             }
         }
