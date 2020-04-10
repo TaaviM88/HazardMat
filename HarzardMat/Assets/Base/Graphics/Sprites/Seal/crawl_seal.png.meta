@@ -11,6 +11,27 @@ TextureImporter:
   - first:
       213: -9064592663974250163
     second: crawl_seal_2
+  - first:
+      213: 2866967747653513654
+    second: crawl_seal_0
+  - first:
+      213: 2626123512056072120
+    second: crawl_seal_1
+  - first:
+      213: 1944958404757952759
+    second: crawl_seal_2
+  - first:
+      213: 2305628062482729514
+    second: crawl_seal_3
+  - first:
+      213: -6032891211780612425
+    second: crawl_seal_4
+  - first:
+      213: 6261930122090552629
+    second: crawl_seal_5
+  - first:
+      213: 5735504850069967728
+    second: crawl_seal_6
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -54,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,7 +92,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -91,6 +112,18 @@ TextureImporter:
     overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -100,8 +133,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186c688bf46e4b300800000000000000
-      internalID: 267091507994347137
+      spriteID: 6b1b3650af389c720800000000000000
+      internalID: 2866967747653513654
       vertices: []
       indices: 
       edges: []
@@ -119,10 +152,10 @@ TextureImporter:
       name: crawl_seal_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 256
         y: 0
-        width: 32
-        height: 32
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80273695651b40f00800000000000000
-      internalID: 1082184794900754952
+      spriteID: 8b74760ab6dd17420800000000000000
+      internalID: 2626123512056072120
       vertices: []
       indices: 
       edges: []
@@ -140,10 +173,10 @@ TextureImporter:
       name: crawl_seal_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 512
         y: 0
-        width: 32
-        height: 32
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +184,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d49f3369ff8143280800000000000000
-      internalID: -9064592663974250163
+      spriteID: 7f812824d51edfa10800000000000000
+      internalID: 1944958404757952759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crawl_seal_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2a8470d18c3fff10800000000000000
+      internalID: 2305628062482729514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crawl_seal_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be9d31186dd64ca0800000000000000
+      internalID: -6032891211780612425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crawl_seal_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d9687d448d6e650800000000000000
+      internalID: 6261930122090552629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crawl_seal_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07353fbe54b989f40800000000000000
+      internalID: 5735504850069967728
       vertices: []
       indices: 
       edges: []
