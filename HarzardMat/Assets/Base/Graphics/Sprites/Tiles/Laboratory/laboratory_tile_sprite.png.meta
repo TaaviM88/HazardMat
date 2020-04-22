@@ -1,0 +1,997 @@
+fileFormatVersion: 2
+guid: c591bf54f2d4ad24485c53cc3482e05a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8130018441011268662
+    second: laboratory_tile_sprite_0
+  - first:
+      213: -7253168728604465230
+    second: laboratory_tile_sprite_1
+  - first:
+      213: -7479864912826189112
+    second: laboratory_tile_sprite_2
+  - first:
+      213: -7569798594902202788
+    second: laboratory_tile_sprite_3
+  - first:
+      213: -6137869692535526952
+    second: laboratory_tile_sprite_4
+  - first:
+      213: -9126792725472028499
+    second: laboratory_tile_sprite_5
+  - first:
+      213: 7742175858628207519
+    second: laboratory_tile_sprite_6
+  - first:
+      213: -2359032098933799687
+    second: laboratory_tile_sprite_7
+  - first:
+      213: -329261696712929416
+    second: laboratory_tile_sprite_8
+  - first:
+      213: -840276774093759774
+    second: laboratory_tile_sprite_9
+  - first:
+      213: -9169360052023286566
+    second: laboratory_tile_sprite_10
+  - first:
+      213: 4714940623466277534
+    second: laboratory_tile_sprite_11
+  - first:
+      213: 354333453964746062
+    second: laboratory_tile_sprite_12
+  - first:
+      213: 7522858152826681031
+    second: laboratory_tile_sprite_13
+  - first:
+      213: -4040085192419105308
+    second: laboratory_tile_sprite_14
+  - first:
+      213: 5878237975103085025
+    second: laboratory_tile_sprite_0
+  - first:
+      213: -1151168811977822559
+    second: laboratory_tile_sprite_1
+  - first:
+      213: -1275141114903996125
+    second: laboratory_tile_sprite_2
+  - first:
+      213: -8322569390801051680
+    second: laboratory_tile_sprite_3
+  - first:
+      213: -2990324950724487849
+    second: laboratory_tile_sprite_4
+  - first:
+      213: -5649814128307326429
+    second: laboratory_tile_sprite_5
+  - first:
+      213: -2994843721201436713
+    second: laboratory_tile_sprite_6
+  - first:
+      213: -1814146942817275470
+    second: laboratory_tile_sprite_7
+  - first:
+      213: 303445110508438062
+    second: laboratory_tile_sprite_8
+  - first:
+      213: -8211308433754791728
+    second: laboratory_tile_sprite_9
+  - first:
+      213: -2452533117200910022
+    second: laboratory_tile_sprite_10
+  - first:
+      213: 6755928274494948628
+    second: laboratory_tile_sprite_11
+  - first:
+      213: 1001662231641604869
+    second: laboratory_tile_sprite_12
+  - first:
+      213: -6288651059327695990
+    second: laboratory_tile_sprite_13
+  - first:
+      213: -9007505374288640480
+    second: laboratory_tile_sprite_14
+  - first:
+      213: -6611729505571398155
+    second: laboratory_tile_sprite_15
+  - first:
+      213: 7906511747800236200
+    second: laboratory_tile_sprite_16
+  - first:
+      213: -6545209533333715610
+    second: laboratory_tile_sprite_17
+  - first:
+      213: -1904685086641620994
+    second: laboratory_tile_sprite_18
+  - first:
+      213: 1297633955794118676
+    second: laboratory_tile_sprite_19
+  - first:
+      213: -7212959531550092391
+    second: laboratory_tile_sprite_20
+  - first:
+      213: -4584196554884259782
+    second: laboratory_tile_sprite_21
+  - first:
+      213: -3931503563832175545
+    second: laboratory_tile_sprite_22
+  - first:
+      213: 253677815088161621
+    second: laboratory_tile_sprite_23
+  - first:
+      213: -5993129887654080692
+    second: laboratory_tile_sprite_24
+  - first:
+      213: 4023928281948525105
+    second: laboratory_tile_sprite_25
+  - first:
+      213: 8489835243005492031
+    second: laboratory_tile_sprite_26
+  - first:
+      213: -2926568988666082288
+    second: laboratory_tile_sprite_27
+  - first:
+      213: -7154380672514980075
+    second: laboratory_tile_sprite_28
+  - first:
+      213: -5803795142459572865
+    second: laboratory_tile_sprite_29
+  - first:
+      213: 3507328275266020626
+    second: laboratory_tile_sprite_30
+  - first:
+      213: 821567432600292912
+    second: laboratory_tile_sprite_31
+  - first:
+      213: 9032604898039207566
+    second: laboratory_tile_sprite_32
+  - first:
+      213: -5789417340112132391
+    second: laboratory_tile_sprite_33
+  - first:
+      213: -4915124130182360729
+    second: laboratory_tile_sprite_34
+  - first:
+      213: 3653407244680642275
+    second: laboratory_tile_sprite_35
+  - first:
+      213: 7483229686783775211
+    second: laboratory_tile_sprite_36
+  - first:
+      213: 2063982857028010160
+    second: laboratory_tile_sprite_37
+  - first:
+      213: 7060667566866999323
+    second: laboratory_tile_sprite_38
+  - first:
+      213: -5665330613986576841
+    second: laboratory_tile_sprite_39
+  - first:
+      213: -7948283777215876496
+    second: laboratory_tile_sprite_40
+  - first:
+      213: 6210736640075879881
+    second: laboratory_tile_sprite_41
+  - first:
+      213: -3814226039224568410
+    second: laboratory_tile_sprite_42
+  - first:
+      213: -4599925833694597318
+    second: laboratory_tile_sprite_43
+  - first:
+      213: 1111758513769021840
+    second: laboratory_tile_sprite_44
+  - first:
+      213: 7924119149383727433
+    second: laboratory_tile_sprite_45
+  - first:
+      213: 4482153149324672013
+    second: laboratory_tile_sprite_46
+  - first:
+      213: -3402011803228973511
+    second: laboratory_tile_sprite_47
+  - first:
+      213: 7981754626992490470
+    second: laboratory_tile_sprite_48
+  - first:
+      213: -8016445081054155869
+    second: laboratory_tile_sprite_49
+  - first:
+      213: 7314049090281699248
+    second: laboratory_tile_sprite_50
+  - first:
+      213: -7749607178099753922
+    second: laboratory_tile_sprite_51
+  - first:
+      213: -3631225194560600496
+    second: laboratory_tile_sprite_52
+  - first:
+      213: 5475169219308252579
+    second: laboratory_tile_sprite_53
+  - first:
+      213: -6308669734903955247
+    second: laboratory_tile_sprite_54
+  - first:
+      213: 2482508639182358980
+    second: laboratory_tile_sprite_55
+  - first:
+      213: 1312420315413176038
+    second: laboratory_tile_sprite_15
+  - first:
+      213: -4600376346406949241
+    second: laboratory_tile_sprite_16
+  - first:
+      213: 6298404947479606955
+    second: laboratory_tile_sprite_17
+  - first:
+      213: -2701273263353921384
+    second: laboratory_tile_sprite_18
+  - first:
+      213: -3624483309802109086
+    second: laboratory_tile_sprite_19
+  - first:
+      213: 2630360226366518941
+    second: laboratory_tile_sprite_20
+  - first:
+      213: -8562547189049098537
+    second: laboratory_tile_sprite_21
+  - first:
+      213: -4610918268953150358
+    second: laboratory_tile_sprite_22
+  - first:
+      213: 5817530116841850422
+    second: laboratory_tile_sprite_23
+  - first:
+      213: -8991229800441774571
+    second: laboratory_tile_sprite_24
+  - first:
+      213: -7087107283618944946
+    second: laboratory_tile_sprite_25
+  - first:
+      213: 372277859983032444
+    second: laboratory_tile_sprite_26
+  - first:
+      213: 7182019622839693025
+    second: laboratory_tile_sprite_27
+  - first:
+      213: 2615823440076791484
+    second: laboratory_tile_sprite_28
+  - first:
+      213: -5639986148831612441
+    second: laboratory_tile_sprite_29
+  - first:
+      213: 795612261506251032
+    second: laboratory_tile_sprite_30
+  - first:
+      213: 1415370573129387770
+    second: laboratory_tile_sprite_31
+  - first:
+      213: -2378723228083362666
+    second: laboratory_tile_sprite_32
+  - first:
+      213: -2099528835682248254
+    second: laboratory_tile_sprite_33
+  - first:
+      213: -995633776789417538
+    second: laboratory_tile_sprite_34
+  - first:
+      213: 1175461497710196260
+    second: laboratory_tile_sprite_35
+  - first:
+      213: -7402933657639122151
+    second: laboratory_tile_sprite_36
+  - first:
+      213: 1601872909983551991
+    second: laboratory_tile_sprite_37
+  - first:
+      213: 825332293285519434
+    second: laboratory_tile_sprite_38
+  - first:
+      213: 4704609415338909169
+    second: laboratory_tile_sprite_39
+  - first:
+      213: -1439618542034439677
+    second: laboratory_tile_sprite_40
+  - first:
+      213: -5010204942969980315
+    second: laboratory_tile_sprite_41
+  - first:
+      213: -5295251436506707147
+    second: laboratory_tile_sprite_42
+  - first:
+      213: 6810422618218102518
+    second: laboratory_tile_sprite_43
+  - first:
+      213: -1597550436329093076
+    second: laboratory_tile_sprite_44
+  - first:
+      213: -1515940218127926011
+    second: laboratory_tile_sprite_45
+  - first:
+      213: -4155253583870031503
+    second: laboratory_tile_sprite_46
+  - first:
+      213: -2784278330168567453
+    second: laboratory_tile_sprite_47
+  - first:
+      213: 865641436815467416
+    second: laboratory_tile_sprite_48
+  - first:
+      213: 7926618345315653971
+    second: laboratory_tile_sprite_49
+  - first:
+      213: -6638903910554164070
+    second: laboratory_tile_sprite_50
+  - first:
+      213: 7847473093510503453
+    second: laboratory_tile_sprite_51
+  - first:
+      213: 481479070935403157
+    second: laboratory_tile_sprite_52
+  - first:
+      213: 7123799904800938664
+    second: laboratory_tile_sprite_53
+  - first:
+      213: 3868422909854478894
+    second: laboratory_tile_sprite_54
+  - first:
+      213: 5995812867069141420
+    second: laboratory_tile_sprite_55
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e91b3b4b42b39150800000000000000
+      internalID: 5878237975103085025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aead8d801a3600f0800000000000000
+      internalID: -1151168811977822559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329d6a779e9cd4ee0800000000000000
+      internalID: -1275141114903996125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef93c2eb3b408c80800000000000000
+      internalID: -8322569390801051680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755541dfc4b3086d0800000000000000
+      internalID: -2990324950724487849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322324bfbf3d791b0800000000000000
+      internalID: -5649814128307326429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d7baffb08d2076d0800000000000000
+      internalID: -2994843721201436713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1f30f97fad2d6e0800000000000000
+      internalID: -1814146942817275470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e224fa468bd063400800000000000000
+      internalID: 303445110508438062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d060e02c729b0e80800000000000000
+      internalID: -8211308433754791728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39bb5dbf1ad6fdd0800000000000000
+      internalID: -2452533117200910022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4150a41a8f0e1cd50800000000000000
+      internalID: 6755928274494948628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5034ced1e7e96ed00800000000000000
+      internalID: 1001662231641604869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8383642e293ab8a0800000000000000
+      internalID: -6288651059327695990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0268a1df599eef280800000000000000
+      internalID: -9007505374288640480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee5538c257a63210800000000000000
+      internalID: 1312420315413176038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78eed47361e2820c0800000000000000
+      internalID: -4600376346406949241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6b51aeded686750800000000000000
+      internalID: 6298404947479606955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_18
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7fdb151033195e0800000000000000
+      internalID: -1904685086641620994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 418e797253f120210800000000000000
+      internalID: 1297633955794118676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99350be958b66eb90800000000000000
+      internalID: -7212959531550092391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_21
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a30ed8d7589a160c0800000000000000
+      internalID: -4584196554884259782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 744d994b65e7079c0800000000000000
+      internalID: -3931503563832175545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_23
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5532ab7f0ae358300800000000000000
+      internalID: 253677815088161621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_24
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f0a91ce1024dca0800000000000000
+      internalID: -5993129887654080692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laboratory_tile_sprite_25
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1329037e37dd7d730800000000000000
+      internalID: 4023928281948525105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
