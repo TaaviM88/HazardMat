@@ -955,12 +955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1696444e47a112f4883d2e7476929a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lr: {fileID: 1905991234}
-  whatIsGrappleable:
-    serializedVersion: 2
-    m_Bits: 256
-  newGravityScale: 20
-  maxDistance: 8
-  jointDistancePercentage: 0.8
-  jointDampingRatio: 1
-  jointFrequency: 0
+  hook: {fileID: 7501959535116080343, guid: 3c4ccfbf32e89e845a72ad8cfe0954b5, type: 3}
+  ropeActive: 0
+  maxDistance: 10

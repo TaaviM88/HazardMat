@@ -5,7 +5,68 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
-    public LineRenderer lr;
+    //new
+    public GameObject hook;
+    public bool ropeActive;
+    GameObject curHook;
+    PlayerMovement move;
+    public float maxDistance = 5;
+
+    private Vector2 grapplePoint;
+    // Start is called before the first frame update
+    void Start()
+    {
+        move = GetComponent<PlayerMovement>();
+    }
+
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            ThrowGrapple();
+        }
+    }
+
+    private void ThrowGrapple()
+    {
+
+        if (!ropeActive)
+        {
+            Vector2 destiny = new Vector2(move.GetHorizontalInput().x, 1);
+         
+
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, destiny, maxDistance);
+
+            if (hit2D.collider != null)
+            {
+                if (hit2D.collider.gameObject.layer == 8)
+                {
+
+                    grapplePoint = hit2D.point;
+
+                    curHook = (GameObject)Instantiate(hook, transform.position, Quaternion.identity);
+                    curHook.GetComponent<Rope>().destiny = grapplePoint;
+                    ropeActive = true;
+                    PlayerManager.Instance.canChangeAttackMode = false;
+
+
+                }
+            }
+
+        }
+        else
+        {
+            Destroy(curHook);
+            ropeActive = false;
+            PlayerManager.Instance.canChangeAttackMode = true;
+        }
+
+    }
+
+}
+//Old
+   /* public LineRenderer lr;
     private Vector3 grapplePoint;
     public LayerMask whatIsGrappleable;
     public float newGravityScale = 20f;
@@ -125,5 +186,5 @@ public class GrapplingHook : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, maxDistance);
-    }
-}
+    }*/
+
