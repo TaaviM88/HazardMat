@@ -23,7 +23,6 @@ public class SealMovement : MonoBehaviour
     }
 
 
-
     // Update is called once per frame
     void Update()
     {
@@ -31,25 +30,31 @@ public class SealMovement : MonoBehaviour
         {
             return;
         }
+
         moveHorizontal = Input.GetAxis("Horizontal");
         float rawHorizontal = Input.GetAxisRaw("Horizontal");
         if (rawHorizontal != 0)
         {
-            transform.localScale = new Vector3((int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            if (PlayerManager.Instance.side == 1)
+            {
+                transform.localScale = new Vector3((int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-(int)rawHorizontal * originalScaleX, transform.localScale.y, transform.localScale.z);
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        _rb2D.velocity = new Vector2(moveHorizontal * moveSpeed, _rb2D.velocity.y);
+        
+            _rb2D.velocity = new Vector2(moveHorizontal * moveSpeed, _rb2D.velocity.y);
     }
 
     public void UpdateOriginalScaleX(int side)
     {
         originalScaleX = side;
     }
-
-   
-
 
 }

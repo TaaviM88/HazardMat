@@ -27,7 +27,8 @@ public class Summon : MonoBehaviour
         GameObject clone = Instantiate(SummonPrefab, summonPoint.position, Quaternion.identity);
         //clone.transform.localScale = new Vector3( PlayerManager.Instance.side * clone.transform.localScale.x, clone.transform.localScale.y, clone.transform.localScale.z);
         //clone.transform.localScale = new Vector3 (PlayerManager.Instance.side,  clone.transform.localScale.y, clone.transform.localScale.z);
-        clone.GetComponent<SealMovement>().UpdateOriginalScaleX(PlayerManager.Instance.side);
+        clone.transform.localScale = new Vector3(PlayerManager.Instance.side, clone.transform.localScale.y, clone.transform.localScale.z);
+        //clone.GetComponent<SealMovement>().UpdateOriginalScaleX(PlayerManager.Instance.side);
         PlayerManager.Instance.Summoning();
     }
 
