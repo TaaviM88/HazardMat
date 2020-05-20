@@ -15,6 +15,7 @@ public class Throw : MonoBehaviour
     ThrowWeapon throwWeaponScript;
     PlayerMovement move;
     Material material;
+    PlayerAnimationScript pAnimScript;
     float returnTime;
     
     private Vector3 origLockPos;
@@ -49,7 +50,7 @@ public class Throw : MonoBehaviour
 
         weaponRb2D = weapon.GetComponent<Rigidbody2D>();
         throwWeaponScript = weapon.GetComponent<ThrowWeapon>();
-
+        pAnimScript = GetComponent<PlayerAnimationScript>();
         throwWeaponScript.AddThrowWeaponScript(this);
 
         origLockPos = weapon.localPosition;
@@ -85,7 +86,6 @@ public class Throw : MonoBehaviour
             case State.Throwing:
                 if (move.GetCanMove())
                 {
-
                     ToggleCanMoveThrow(false);
                 }
 
@@ -117,7 +117,8 @@ public class Throw : MonoBehaviour
 
             if (Input.GetButtonUp("Fire1"))
             {
-                WeaponThrow();
+                //WeaponThrow();
+                //pAnimScript.SetTrigger("")
                 isAiming = false;
             }
         }
@@ -172,6 +173,7 @@ public class Throw : MonoBehaviour
         if (isAiming)
         {
             AimArrow();
+
         }
         else
         {
@@ -187,6 +189,9 @@ public class Throw : MonoBehaviour
         if (!arrow.gameObject.activeInHierarchy)
         {
             arrow.gameObject.SetActive(true);
+            //laukaistaan kerran animaatio. Pitää varmaan keksiä parempi paikka?
+            pAnimScript.SetBool("isAiming",isAiming);
+            pAnimScript.SetTrigger("StartAim");
         }
 
         if (arrow.localPosition != arrowOrigPosition)
@@ -236,6 +241,7 @@ public class Throw : MonoBehaviour
         weapon.localEulerAngles = origLockRot;
         weapon.localPosition = origLockPos;
         hasWeapon = true;
+        pAnimScript.SetTrigger("CatchWeapon");
         weapon.localScale = new Vector3(1, 1, 1);
         throwWeaponScript.ToggleColliderTrigger(true);
         PlayerManager.Instance.canChangeAttackMode = true;

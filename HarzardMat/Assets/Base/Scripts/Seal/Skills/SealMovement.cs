@@ -23,6 +23,7 @@ public class SealMovement : MonoBehaviour
     }
 
 
+
     // Update is called once per frame
     void Update()
     {
