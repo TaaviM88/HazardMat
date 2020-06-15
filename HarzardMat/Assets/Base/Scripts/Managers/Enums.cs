@@ -34,7 +34,7 @@ public enum EnemySpawnerType
 
 public enum PlayerAttackState
 {
-    None, 
+    None,
     WeaponThrow, 
     SummonFamiliar,
     GrapplingHook,
@@ -44,6 +44,14 @@ public enum PlayerLookDir
 {
     Right,
     Left,
+}
+
+public enum PlayerCarryingState
+{
+    None,
+    PickingUp,
+    Carry,
+    Lowering
 }
 
 public enum GrapplinState

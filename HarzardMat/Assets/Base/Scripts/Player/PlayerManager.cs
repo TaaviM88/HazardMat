@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     Summon summon;
     GrapplingHook grapplingHook;
     Collision coll;
+    PickUp pickUp;
     [Header("References")]
     public GameObject seal;
     public GameObject sealBagPosition;
@@ -57,6 +58,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         summon = GetComponent<Summon>();
         grapplingHook = GetComponent<GrapplingHook>();
         coll = GetComponent<Collision>();
+        pickUp = GetComponent<PickUp>();
         SetCameraToFollowPlayer();
         maxHealth = health;
 
@@ -104,7 +106,10 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
             case PlayerAttackState.None:
                 EnableScripts("");
-                
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    pickUp.PickUpObject();
+                }
                 break;
         }
 
