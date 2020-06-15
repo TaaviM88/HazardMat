@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 5596391976062850014, guid: 5f4ced1c7fc046544822923f899c44d2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.178497
+      value: 13.136
       objectReference: {fileID: 0}
     - target: {fileID: 5596391976062850014, guid: 5f4ced1c7fc046544822923f899c44d2,
         type: 3}
@@ -3696,7 +3696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321846455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: -0.11755574, z: -10}
+  m_LocalPosition: {x: 0.00000023841858, y: -0.11755574, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 559895603}
@@ -19353,7 +19353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860209800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: -0.11755574, z: -10}
+  m_LocalPosition: {x: 0.00000023841858, y: -0.11755574, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19375,7 +19375,6 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_CameraOutput: 0
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -19387,6 +19386,7 @@ MonoBehaviour:
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
+  m_ClearDepth: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2

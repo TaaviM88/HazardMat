@@ -47,17 +47,6 @@ public class Enemy_Walk : StateMachineBehaviour
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             CheckFacingDirection(animator, newPos);
             rb.MovePosition(newPos);
-            //Debug.Log(Vector3.Distance(animator.transform.position, target));
-            /* if (Vector3.Distance(animator.transform.position, target) < reachedPositionDistance)
-             {
-                 Debug.Log("Lul");
-                 //AI.SetState(EnemyAI.State.Attacking);
-                 return;
-             }
-             else
-             {
-
-             }*/
         }
         
     }
