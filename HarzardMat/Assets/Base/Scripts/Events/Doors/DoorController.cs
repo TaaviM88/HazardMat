@@ -45,7 +45,7 @@ public class DoorController : MonoBehaviour
             }
         }
     }
-
+    
    /*private void OnEnable()
     {
         GameEvents.current.onDoorwayTriggerEnter += OnDoorwayOpen;
