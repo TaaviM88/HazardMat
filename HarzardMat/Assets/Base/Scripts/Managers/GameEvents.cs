@@ -40,4 +40,14 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action<PlayerSkillState> enablePlayerSkillState;
+
+    public void UpdatePlayerSkillState(PlayerSkillState enableSkill)
+    {
+        if(enablePlayerSkillState != null)
+        {
+            enablePlayerSkillState(enableSkill);
+        }
+    }
+
 }

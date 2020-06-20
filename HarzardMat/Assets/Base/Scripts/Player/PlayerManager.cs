@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     //private enum AttackMode {WeaponThrow,SummonFamiliar};
     //private AttackMode attackMode = AttackMode.WeaponThrow;
 
-    PlayerAttackState attackMode;
+    PlayerSkillState attackMode;
     PlayerMovement move;
     PlayerAnimationScript animeScript;
     Throw throwScript;
@@ -69,6 +69,11 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
 
     }
 
+    void Start()
+    {
+        GameEvents.current.enablePlayerSkillState += EnableAttackMode;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -88,23 +93,23 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         switch(attackMode)
         {
 
-            case PlayerAttackState.WeaponThrow:
+            case PlayerSkillState.WeaponThrow:
 
                 if(!throwScript.enabled)
                     EnableScripts(throwScript.ToString());
                 break;
 
-            case PlayerAttackState.SummonFamiliar:
+            case PlayerSkillState.SummonFamiliar:
                 if (!summon.enabled)
                     EnableScripts(summon.ToString());       
             break;
 
-            case PlayerAttackState.GrapplingHook:
+            case PlayerSkillState.GrapplingHook:
                 if(!grapplingHook.enabled)
                 EnableScripts(grapplingHook.ToString());
                 break;
 
-            case PlayerAttackState.None:
+            case PlayerSkillState.None:
                 EnableScripts("");
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -125,7 +130,7 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         //Jos vaihdellaan kahden moden välillä  
         //attackMode = attackMode == AttackMode.WeaponThrow ? AttackMode.SummonFamiliar : AttackMode.WeaponThrow;
-        if((int)attackMode < System.Enum.GetValues(typeof(PlayerAttackState)).Length -1)
+        if((int)attackMode < System.Enum.GetValues(typeof(PlayerSkillState)).Length -1)
         {
             attackMode++;
         }
@@ -135,6 +140,21 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
         }
 
         GameEvents.current.UpdateBattleLog("Player mode is: " + attackMode.ToString());
+    }
+
+
+    public void EnableAttackMode(PlayerSkillState skill)
+    {
+        if (canChangeAttackMode)
+        {
+            attackMode = skill;
+            GameEvents.current.UpdateBattleLog("Player mode is: " + attackMode.ToString());
+        }
+        else
+        {
+            GameEvents.current.UpdateBattleLog(" Can't  change player skill mode");
+        }
+        
     }
 
     private void EnableScripts(string scriptName)

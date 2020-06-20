@@ -26,18 +26,25 @@ public class Enemy_Walk : StateMachineBehaviour
       
         if (AI.GetState() == EnemyAIState.ChaseTarget)
         {
-            if (pathfind.LookAtPlayer())
+            if (Vector3.Distance(animator.transform.position, new Vector2(pathfind.GetTargetTransform().x, rb.position.y)) < 0.5f && Vector3.Distance(animator.transform.position, new Vector2(pathfind.GetTargetTransform().x, rb.position.y)) > -0.5f)
             {
-                Vector2 target = new Vector2(pathfind.GetTargetTransform().x, rb.position.y); //pathfind.GetTargetTransform().position; //new Vector2(player.position.x, rb.position.y);
-                Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-                CheckFacingDirection(animator, newPos);
-                if (Vector3.Distance(animator.transform.position, target) < reachedPositionDistance)
+                Debug.Log("Deadzone alue idiootti");
+            }
+            else
+            {
+                if (pathfind.LookAtPlayer())
                 {
-                    AI.SetState(EnemyAIState.Attacking);
-                    return;
+                    Vector2 target = new Vector2(pathfind.GetTargetTransform().x, rb.position.y); //pathfind.GetTargetTransform().position; //new Vector2(player.position.x, rb.position.y);
+                    Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+                    CheckFacingDirection(animator, newPos);
+                    if (Vector3.Distance(animator.transform.position, target) < reachedPositionDistance)
+                    {
+                        AI.SetState(EnemyAIState.Attacking);
+                        return;
+                    }
+                    else
+                        rb.MovePosition(newPos);
                 }
-                else                
-                    rb.MovePosition(newPos);
             }
         }
      

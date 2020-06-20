@@ -25,15 +25,22 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Booleans")]
     public bool wallGrab, isDashing;
+
     private bool canMove = true;
     private bool groundTouch;
     private bool hasDashed;
     private bool jumping = false;
     private bool wallJumping = false;
+
     private float orginalGravityScale;
+    private float horizontalX;
+    private float VerticalY;
+
     private Vector2 moveDir;
     public int side = 1;
 
+    PlayerRopeState ropeState;
+    private float forceToAddAtRope = 50f;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGround();
 
-        float horizontalX = Input.GetAxis("Horizontal");
-        float VerticalY = Input.GetAxis("Vertical");
+        horizontalX = Input.GetAxis("Horizontal");
+        VerticalY = Input.GetAxis("Vertical");
         moveDir = new Vector2(horizontalX, VerticalY);
 
         if (Input.GetButtonDown("Jump"))
@@ -147,8 +154,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        Move();
+    {   
+        if(ropeState == PlayerRopeState.none)
+        {
+            Move();
+        }
+
+        if(ropeState == PlayerRopeState.hanging)
+        {
+            RopeHangingMovement();
+        }
+        
     }
 
     private void Jump(bool attackJump)
@@ -216,6 +232,14 @@ public class PlayerMovement : MonoBehaviour
             anime.SetHorizontalMovement(moveDir.x, moveDir.y, _rb2D.velocity.y);
         }
     
+    }
+
+    private void RopeHangingMovement()
+    {
+        if (horizontalX != 0)
+        {
+            _rb2D.AddForce(horizontalX * Vector2.right * forceToAddAtRope);
+        }
     }
 
     private void InstantiateGhost()
@@ -287,5 +311,15 @@ public class PlayerMovement : MonoBehaviour
     public void AddForce(Vector2 force)
     {
         _rb2D.AddForce(force);
+    }
+
+    public void ChangePlayerRopeState(PlayerRopeState newState)
+    {
+        ropeState = newState;
+    }
+
+    public PlayerRopeState GetCurrentRopeState()
+    {
+        return ropeState;
     }
 }

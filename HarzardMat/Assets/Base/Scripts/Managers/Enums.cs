@@ -32,12 +32,18 @@ public enum EnemySpawnerType
 #endregion
 
 
-public enum PlayerAttackState
+public enum PlayerSkillState
 {
     None,
     WeaponThrow, 
     SummonFamiliar,
     GrapplingHook,
+}
+
+public enum PlayerRopeState
+{
+    none,
+    hanging,
 }
 
 public enum PlayerLookDir

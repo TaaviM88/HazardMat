@@ -270,7 +270,8 @@ public class Throw : MonoBehaviour
         rb.isKinematic = false;
         //Remove if  you don't want to reset your Y velocity after warp
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        StartCoroutine(TryToWallGrab());
+        
+        //StartCoroutine(TryToWallGrab());
         WeaponStartPull();
     }
 

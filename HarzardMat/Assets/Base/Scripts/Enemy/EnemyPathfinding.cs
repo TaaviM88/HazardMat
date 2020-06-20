@@ -79,20 +79,6 @@ public class EnemyPathfinding : MonoBehaviour
 
         return false;
 
-        /*
-                if (transform.position.x > target.x && isFlipped)
-                {
-                    transform.localScale = flipped;
-                    transform.Rotate(0f, 180f, 0f);
-                    isFlipped = true;
-                }
-                else if(transform.position.x <target.x && !isFlipped)
-                {
-                    transform.localScale = flipped;
-                    transform.Rotate(0f, 180f, 0f);
-                    isFlipped = false;
-                }
-                */
     }
 
     public void FlipEnemy()
