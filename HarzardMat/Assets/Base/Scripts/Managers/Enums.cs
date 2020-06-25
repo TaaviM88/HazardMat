@@ -106,3 +106,10 @@ public enum GameState
     pause,
     menu,
 }
+
+public enum PickableState
+{
+    none,
+    lifted,
+    lowered
+}

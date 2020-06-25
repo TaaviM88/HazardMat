@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public int side = 1;
 
     PlayerRopeState ropeState;
-    private float forceToAddAtRope = 50f;
+    private float forceToAddAtRope = 25f;
     // Start is called before the first frame update
     void Start()
     {
@@ -236,6 +236,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void RopeHangingMovement()
     {
+
         if (horizontalX != 0)
         {
             _rb2D.AddForce(horizontalX * Vector2.right * forceToAddAtRope);
@@ -322,4 +323,5 @@ public class PlayerMovement : MonoBehaviour
     {
         return ropeState;
     }
+
 }

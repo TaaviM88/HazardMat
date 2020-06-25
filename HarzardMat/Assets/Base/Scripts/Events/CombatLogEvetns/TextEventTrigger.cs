@@ -14,8 +14,10 @@ public class TextEventTrigger : MonoBehaviour
     IEnumerator Cooldown()
     {
         cooldownOn = true;
+        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(cooldownTime);
         cooldownOn = false;
+        GetComponent<Collider2D>().enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

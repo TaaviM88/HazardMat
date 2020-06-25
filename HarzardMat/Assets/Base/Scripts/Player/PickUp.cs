@@ -32,10 +32,10 @@ public class PickUp : MonoBehaviour
         }
         
          if (PlayerManager.Instance.side == -1 && interactivePoint.localPosition == orginalIteractivePosition)
-            {
-                interactivePoint.localPosition = new Vector2(interactivePoint.localPosition.x * -1, interactivePoint.localPosition.y);
+         {
+            interactivePoint.localPosition = new Vector2(interactivePoint.localPosition.x * -1, interactivePoint.localPosition.y);
             carryPoint.localPosition = new Vector2(carryPoint.localPosition.x * -1, carryPoint.localPosition.y);
-            }
+         }
     }
 
     public void PickUpObject() 
@@ -49,13 +49,13 @@ public class PickUp : MonoBehaviour
 
                 for (int i = 0; i < pickupObjects.Length; i++)
                 {
-                    if (pickupObjects[i].GetComponent<Pickable>() && pickupObjects[i].transform.parent == null)
+                    if (pickupObjects[i].GetComponent<Pickable>() && pickupObjects[i].transform.parent == null && pickupObjects[i].GetComponent<Pickable>().CanLifted())
                     {
                         PlayerManager.Instance.FreezePlayerMovement();
                         carryingObj = pickupObjects[i].gameObject;
-                        
-                        carryingObj.GetComponent<Rigidbody2D>().isKinematic = true;
-                        carryingObj.GetComponent<BoxCollider2D>().isTrigger =true;
+
+                        carryingObj.GetComponent<Pickable>().SetObjectSet(PickableState.lifted);
+
                         PlayerManager.Instance.canChangeAttackMode = false;
                         carryingObj.transform.SetParent(carryPoint);
                         carryingObj.transform.DOMove(carryPoint.position, pickupSpeed).SetEase(Ease.InFlash).OnComplete(() => SetPlayerCarrying());
@@ -82,8 +82,9 @@ public class PickUp : MonoBehaviour
 
     public void LowerObject()
     {
-        carryingObj.GetComponent<Rigidbody2D>().isKinematic = false;
-        carryingObj.GetComponent<BoxCollider2D>().isTrigger = false;
+        carryingObj.GetComponent<Pickable>().SetObjectSet(PickableState.lowered);
+        //carryingObj.GetComponent<Rigidbody2D>().isKinematic = false;
+        //carryingObj.GetComponent<BoxCollider2D>().isTrigger = false;
         carryingObj.transform.parent = null;
         carryingObj = null;
         state = PlayerCarryingState.None;

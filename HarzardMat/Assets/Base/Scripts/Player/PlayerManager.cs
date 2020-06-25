@@ -291,4 +291,5 @@ public class PlayerManager : MonoBehaviour, ITakeDamage<float>, IDie
     {
         move.AddForce(force);
     }
+    
 }

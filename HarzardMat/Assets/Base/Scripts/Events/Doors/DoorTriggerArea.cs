@@ -65,7 +65,8 @@ public class DoorTriggerArea : MonoBehaviour
             {
                 if (collision.tag == "Player")
                 {
-                    GameEvents.current.DoorwayTriggerExit(id); GameEvents.current.UpdateBattleLog("Hey, door is closing!");
+                    GameEvents.current.DoorwayTriggerExit(id); 
+                    GameEvents.current.UpdateBattleLog("Hey, door is closing!");
                     //Debug.Log(collision.gameObject.name + "exit");
                 }
             }

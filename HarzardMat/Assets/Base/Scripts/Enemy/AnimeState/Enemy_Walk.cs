@@ -26,9 +26,9 @@ public class Enemy_Walk : StateMachineBehaviour
       
         if (AI.GetState() == EnemyAIState.ChaseTarget)
         {
-            if (Vector3.Distance(animator.transform.position, new Vector2(pathfind.GetTargetTransform().x, rb.position.y)) < 0.5f && Vector3.Distance(animator.transform.position, new Vector2(pathfind.GetTargetTransform().x, rb.position.y)) > -0.5f)
+            if (Vector3.Distance(animator.transform.position, new Vector2(pathfind.GetTargetTransform().x, rb.position.y + 1)) < 0.5f && Vector3.Distance(animator.transform.position, new Vector2(pathfind.GetTargetTransform().x, rb.position.y - 1)) > -0.5f)
             {
-                Debug.Log("Deadzone alue idiootti");
+                //Debug.Log("Deadzone alue idiootti");
             }
             else
             {
