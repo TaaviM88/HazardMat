@@ -44,7 +44,9 @@ public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie, ISpawnerID<
 
     private void OnDestroy()
     {
-        if(mySpawner != null)
+        GameEvents.current.SpawnObject(spawnerid);
+
+        if (mySpawner != null)
         {
             mySpawner.gameObject.SetActive(true);
         }
@@ -52,6 +54,6 @@ public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie, ISpawnerID<
 
     public void SetSpawnerID(int newID)
     {
-        throw new System.NotImplementedException();
+        spawnerid = newID;
     }
 }

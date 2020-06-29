@@ -65,7 +65,8 @@ public class PickUp : MonoBehaviour
                 break;
             case PlayerCarryingState.Carry:
                 PlayerManager.Instance.FreezePlayerMovement();
-                carryingObj.transform.DOMove(interactivePoint.position, pickupSpeed).SetEase(Ease.InFlash).OnComplete(() => LowerObject());
+                
+                carryingObj?.transform.DOMove(interactivePoint.position, pickupSpeed).SetEase(Ease.InFlash).OnComplete(() => LowerObject());
                 break;
         }
             

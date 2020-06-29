@@ -16,6 +16,7 @@ public class Throw : MonoBehaviour
     PlayerMovement move;
     Material material;
     PlayerAnimationScript pAnimScript;
+    Collision coll;
     float returnTime;
     
     private Vector3 origLockPos;
@@ -52,6 +53,7 @@ public class Throw : MonoBehaviour
         throwWeaponScript = weapon.GetComponent<ThrowWeapon>();
         pAnimScript = GetComponent<PlayerAnimationScript>();
         throwWeaponScript.AddThrowWeaponScript(this);
+        coll = GetComponent<Collision>();
 
         origLockPos = weapon.localPosition;
         origLockRot = weapon.localEulerAngles;
@@ -92,8 +94,6 @@ public class Throw : MonoBehaviour
                 break;
         }
 
-
-
         HasWeapon();
         PullWeapon();
         Aim();
@@ -106,7 +106,7 @@ public class Throw : MonoBehaviour
     {
         if (hasWeapon)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && coll.onGround)
             {
                 ChangeState(State.Throwing);
                 PlayerManager.Instance.canChangeAttackMode = false;
@@ -212,23 +212,23 @@ public class Throw : MonoBehaviour
         if (move.GetHorizontalInput().y >= 0)
         {
             float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
-            Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+            //Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
 
-            if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero && !move.wallGrab)
+            if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero)
             {
                 arrow.GetComponent<Rigidbody2D>().rotation = 180;
             }
             else
             {
-                arrow.GetComponent<Rigidbody2D>().rotation = angle;
+                arrow.GetComponent<Rigidbody2D>().rotation += angle;
             }
 
         }
         else
         {
             float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
-            Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
-            arrow.GetComponent<Rigidbody2D>().rotation = -angle;
+            //Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+            arrow.GetComponent<Rigidbody2D>().rotation += -angle;
         }
     }
 
@@ -304,7 +304,7 @@ public class Throw : MonoBehaviour
         weapon.eulerAngles = Vector3.zero;
         throwWeaponScript.ToggleColliderTrigger(false);
         throwWeaponScript.SetCameraToFollowWeapon();
-        throwWeaponScript.ThrowTheWeapon(move.GetHorizontalInput(), throwPower,move.side);
+        throwWeaponScript.ThrowTheWeapon(arrow.GetComponent<Rigidbody2D>().rotation, throwPower,move.side);
         throwWeaponScript.ResetRangeTimer();
     }
 

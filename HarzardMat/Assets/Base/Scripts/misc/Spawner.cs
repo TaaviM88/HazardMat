@@ -7,8 +7,9 @@ public class Spawner : MonoBehaviour
 {
     public GameObject spawnObject;
     public int spawnerID = 0;
-    
+    public float cooldownTimer = 3f;
     private GameObject spawnObj;
+    private bool readyToSpawnObj = true;
     ISpawnerID<int> spawnIDScript;
     
     private void Start()
@@ -22,15 +23,21 @@ public class Spawner : MonoBehaviour
     {
         if(spawnerID == id)
         {
-            spawnObj = Instantiate(spawnObject, transform.position, Quaternion.identity);
-            spawnIDScript = spawnObj.GetComponent<ISpawnerID<int>>();
-
-            if (spawnIDScript != null)
-            {
-                spawnIDScript.SetSpawnerID(spawnerID);
-            }
+                //readyToSpawnObj = false;
+                StartCoroutine(SpawnCoolDown());
         }
 
+    }
+
+    IEnumerator SpawnCoolDown()
+    {
+
+        yield return new WaitForSeconds(3);
+        spawnObj = Instantiate(spawnObject, transform.position, Quaternion.identity);
+        spawnIDScript = spawnObj.GetComponent<ISpawnerID<int>>();
+
+        spawnIDScript?.SetSpawnerID(spawnerID);
+        //SpawnObject(spawnerID);
     }
 
     private void OnDestroy()

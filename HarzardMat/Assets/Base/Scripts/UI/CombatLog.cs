@@ -5,7 +5,7 @@ using TMPro;
 using DG.Tweening;
 public class CombatLog : MonoBehaviour
 {
-    [SerializeField] TMP_Text combatlog;
+    [SerializeField] TMP_Text combatlog = null;
     public float typingSpeed = .05f;
     bool istyping = false;
     public List<string> logQueueList = new List<string>();

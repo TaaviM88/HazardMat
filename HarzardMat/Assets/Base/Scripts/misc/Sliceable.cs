@@ -11,23 +11,25 @@ public class Sliceable : MonoBehaviour
  
     public void Break()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        foreach (GameObject child in childs)
-        {
-            if (child.gameObject.GetComponents<Sliced>() != null)
-            {
-                GameObject childClone = Instantiate(child, child1SpawnPosition.position, Quaternion.identity);
-                if (!childClone.activeInHierarchy)
-                {
-                    childClone.SetActive(true);
-                }
-               
-                childClone.transform.localScale = new Vector3((int)transform.localScale.x, 1, 1);
-                //facing = mihin päin vihollinen katsoo kun se halkaistaan
-                childClone.GetComponent<Sliced>().ChanceSprite(sprite.sprite);
-            }
+       
 
-        }
+        sprite = GetComponent<SpriteRenderer>();
+        //foreach (GameObject child in childs)
+        //{
+        //    if (child.gameObject.GetComponents<Sliced>() != null)
+        //    {
+        //        GameObject childClone = Instantiate(child, child1SpawnPosition.position, Quaternion.identity);
+        //        if (!childClone.activeInHierarchy)
+        //        {
+        //            childClone.SetActive(true);
+        //        }
+               
+        //        childClone.transform.localScale = new Vector3((int)transform.localScale.x, 1, 1);
+        //        //facing = mihin päin vihollinen katsoo kun se halkaistaan
+        //        childClone.GetComponent<Sliced>().ChanceSprite(sprite.sprite);
+        //    }
+
+        //}
         Destroy(gameObject);
     }
 }

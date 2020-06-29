@@ -47,10 +47,11 @@ public class Bomb : Pickable, ITakeDamage<float>
         }
 
         if (startFlickering)
-            sprite.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+            FlickerBombColor();
+            
     }
 
-
+    private void FlickerBombColor() => sprite.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
     IEnumerator TimeToExplode()
     {
         startFlickering = true;
@@ -83,8 +84,7 @@ public class Bomb : Pickable, ITakeDamage<float>
         Gizmos.DrawWireSphere(transform.position, explosionForce);
     }
 
-    public void Damage(float damage)
-    {
-        DestroyGameobj();
+    public void Damage(float damage) {
+        //DestroyGameobj();
     }
 }

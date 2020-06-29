@@ -68,9 +68,9 @@ public class ThrowWeapon : MonoBehaviour
         }*/
     }
 
-    public void ThrowTheWeapon(Vector2 direction, float power, int looking)
+    public void ThrowTheWeapon(float angle, float power, int looking)
     {
-        throwDirection = direction;
+        /*throwDirection = direction;
         if(direction != Vector2.zero)
         {
             _rb2d.AddForce(new Vector2(direction.x, direction.y).normalized * power, ForceMode2D.Impulse);
@@ -78,7 +78,10 @@ public class ThrowWeapon : MonoBehaviour
         else
         {
             _rb2d.AddForce(new Vector2(looking, 0) * power, ForceMode2D.Impulse);
-        }
+        }*/
+       transform.localRotation = Quaternion.Euler(0,0, angle);
+        _rb2d.AddForce(transform.right * power, ForceMode2D.Impulse);
+
         ResetRangeTimer();
         isThrowed = true;
     }
