@@ -12,3 +12,7 @@ public interface IDie
     void Die();
 }
 
+public interface ISpawnerID<T>
+{
+    void SetSpawnerID(T newID);
+}

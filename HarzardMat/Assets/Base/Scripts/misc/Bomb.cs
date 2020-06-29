@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Pickable
+public class Bomb : Pickable, ITakeDamage<float>
 {
     public float explosionForce = 5f;
     public float explosionDamage = 50f;
@@ -74,12 +74,17 @@ public class Bomb : Pickable
         }
 
         Instantiate(explosionParticle.gameObject, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        DestroyGameobj();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionForce);
+    }
+
+    public void Damage(float damage)
+    {
+        DestroyGameobj();
     }
 }

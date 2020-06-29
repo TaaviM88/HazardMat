@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie
+public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie, ISpawnerID<int>
 {
     public float health = 2;
     public int side = 1;
+
+    private int spawnerid;
     EnemySpawner mySpawner;
     //public float timeToLive = 10f;
 
@@ -46,5 +48,10 @@ public class EnemyManager : MonoBehaviour, ITakeDamage<float>, IDie
         {
             mySpawner.gameObject.SetActive(true);
         }
+    }
+
+    public void SetSpawnerID(int newID)
+    {
+        throw new System.NotImplementedException();
     }
 }

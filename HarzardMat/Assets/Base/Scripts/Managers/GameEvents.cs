@@ -11,6 +11,7 @@ public class GameEvents : MonoBehaviour
     {
         current = this;
     }
+
     #region DoorActions
     public event Action<int> onDoorwayTriggerEnter;
     public void DoorwayTriggerEnter(int id)
@@ -31,6 +32,7 @@ public class GameEvents : MonoBehaviour
     }
     #endregion
 
+    #region BattleLog
     public event Action<string> updateBattleLog;
     public void UpdateBattleLog(string newText)
     {
@@ -39,7 +41,9 @@ public class GameEvents : MonoBehaviour
             updateBattleLog(newText);
         }
     }
+    #endregion
 
+    #region PlayerSkillState
     public event Action<PlayerSkillState> enablePlayerSkillState;
 
     public void UpdatePlayerSkillState(PlayerSkillState enableSkill)
@@ -49,5 +53,15 @@ public class GameEvents : MonoBehaviour
             enablePlayerSkillState(enableSkill);
         }
     }
+    #endregion
 
+    public event Action<int> spawnObject;
+
+    public void SpawnObject(int id)
+    {
+        if(spawnObject != null)
+        {
+            spawnObject(id);
+        }
+    }
 }
