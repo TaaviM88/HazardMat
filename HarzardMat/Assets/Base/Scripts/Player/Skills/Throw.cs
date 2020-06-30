@@ -199,37 +199,62 @@ public class Throw : MonoBehaviour
             arrow.localPosition = arrowOrigPosition;
         }
 
+        //Katsotaan Vasemmalle
         if (move.side != 1)
         {
             arrow.GetComponent<Rigidbody2D>().rotation = 180;
-        }
+            Vector3 negativeMove = move.GetHorizontalInput();
+            negativeMove.x = negativeMove.x * -1;
+            float angle = Vector3.Angle(negativeMove, Vector3.right);
 
-        else
-        {
-            arrow.GetComponent<Rigidbody2D>().rotation = 0;
-        }
-
-        if (move.GetHorizontalInput().y >= 0)
-        {
-            float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
-            //Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
-
-            if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero)
+            if (move.GetHorizontalInput().y >= 0)
             {
-                arrow.GetComponent<Rigidbody2D>().rotation = 180;
+                arrow.GetComponent<Rigidbody2D>().rotation += -angle;
             }
             else
             {
                 arrow.GetComponent<Rigidbody2D>().rotation += angle;
             }
 
+
         }
+        //Katsotaan oikealle
         else
         {
+            arrow.GetComponent<Rigidbody2D>().rotation = 0;
             float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
-            //Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
-            arrow.GetComponent<Rigidbody2D>().rotation += -angle;
+            if(move.GetHorizontalInput().y >= 0)
+            {
+                arrow.GetComponent<Rigidbody2D>().rotation += angle;
+            }
+            else
+            {
+                arrow.GetComponent<Rigidbody2D>().rotation += -angle;
+            }
         }
+
+        //Original setti
+        //if (move.GetHorizontalInput().y >= 0)
+        //{
+        //    float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
+        //    //Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+
+        //    if (move.side != 1 && move.GetHorizontalInput() == Vector2.zero)
+        //    {
+        //        arrow.GetComponent<Rigidbody2D>().rotation = 180;
+        //    }
+        //    else
+        //    {
+        //        arrow.GetComponent<Rigidbody2D>().rotation += angle;
+        //    }
+
+        //}
+        //else
+        //{
+        //    float angle = Vector3.Angle(move.GetHorizontalInput(), Vector3.right);
+        //    //Vector3 cross = Vector3.Cross(move.GetHorizontalInput(), Vector3.right).normalized;
+        //    arrow.GetComponent<Rigidbody2D>().rotation += -angle;
+        //}
     }
 
     private void WeaponCatch()
