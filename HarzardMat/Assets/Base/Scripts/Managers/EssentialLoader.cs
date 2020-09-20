@@ -8,14 +8,16 @@ public class EssentialLoader : MonoBehaviour
     public GameObject player;
     public GameObject gameManager;
     public GameObject audioManager;
+    public GameObject eventSystem;
 
     // Start is called before the first frame update
     void Awake()
     {
         InstantiateUICanvas();
-       // InstantiatePlayer();
+        InstantiatePlayer();
         InstantiateGameManager();
         InstantiateAudioManager();
+        InstantiateEventSystem();
     }
 
     private void InstantiateAudioManager()
@@ -23,6 +25,14 @@ public class EssentialLoader : MonoBehaviour
         if (AudioManager.Instance == null)
         {
             Instantiate(audioManager);
+        }
+    }
+
+    private void InstantiateEventSystem()
+    {
+        if (GameEvents.current == null)
+        {
+            Instantiate(eventSystem);
         }
     }
 
